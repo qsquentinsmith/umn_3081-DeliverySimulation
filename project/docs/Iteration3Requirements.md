@@ -197,7 +197,7 @@ TAs will inspect code for good naming conventions, good code organization, and i
 
 ### Code Assessment ( 50% )
 
-Code functionality will be tested with automated tests through Github, which in turn run the automated unit tests of Google Test. Assessment will also be a visual inspection of the simulation and its output, as well as a visual inspection of the code.
+Code functionality will be tested manually following your instructions on your mainpage. There should be minimal set up required to see the project at work, this means there should be at least one scene file which demonstrates what creative extensions you've made to the project.
 
 <hr>
 
