@@ -1,5 +1,7 @@
 # Iteration Three: Enhancing and Extending the Package Delivery System -- Part Two
 
+## Iteration 3- VERSION 2, April 19, 2021 - Stricter unit testing requirements. 
+
 ## Iteration 3 - VERSION 1, April 19, 2021  - **NOTE, THE REQUIREMENTS IN THIS DOCUMENT ARE SUBJECT TO CHANGE. THERE WILL BE A CANVAS ANNOUNCEMENT WHEN THERE IS A CHANGE TO THIS DOCUMENT.**<hr>
 
 | Date | Item | Description of Verification and Validation of Deliverable(s) |
@@ -88,6 +90,8 @@ https://github.com/google/googletest
 Unit tests are essential in a large-scale project, because the entire code base can be tested regularly and automatically as it is being developed. In the strictest application of Test-Driven Development (TDD), the tests are written _before_ the code, which helps solidify requirements and write testable code.
 
 A sample test file is provided in the /project/tests directory. This directory must be a sibling to your _src_ directory. When you _make_ the tests, they will generate an executable (in build/bin) which, when executed, displays a report of the tests. Use this file as a guide to your own testing. While the requirements for testing in Preliminary Turn-in #2 (more later) are rather light, you can expect a much more robust testing requirement in later iterations. Do not slack on making good tests for your code!
+
+In this iteration, the testing requirements have been made more comprehensive and we have removed the previous exception of - "no need to test functions that overly rely on external classes". All public functions in all the classes require test cases as explained in the lectures and piazza posts. The only exception that will be given is that you don't require to write tests for delivery_simulation.cc. Also note that the SOLID principles will be given more weightage in this iteration, and thus you are advised to move logic from delivery_simulation.cc to appropriate classes. DeliverySimulation should just play the role of a facade and shouldn't be rife with important logic.
 
 ### Style Compliance
 
