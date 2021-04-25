@@ -24,13 +24,19 @@ int DeliverySimulation::Uid() {
 }
 
 IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
-	std::string carrierType = JsonHelper::GetString(val, "type");
+	std::string entityType = JsonHelper::GetString(val, "type");
 	IEntity* entity_ = factory->CreateEntity(val);
 
-	if (carrierType == "drone" || carrierType == "robot") {
+	if (entityType == "drone" || entityType == "robot") {
 		((Carrier*) entity_)->SetGraph(graph_);
 		((Carrier*) entity_)->SetStrategy();
 	}
+	//else if (entityType == "package") {
+		//select color here based on weight
+		
+		//*****Notify package color changed*****
+		//observer_->ColorChange(entity_);
+	//}
 
 	if (entity_) {
 		EntityBase* base = dynamic_cast<EntityBase*>(entity_);
