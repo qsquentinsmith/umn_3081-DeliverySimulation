@@ -77,6 +77,14 @@ namespace csci3081 {
 			* 
 			*/
 			void Idle(IEntity* carrier);
+		
+			/**
+			* @brief Notify observers that the package was changed colors
+			* 
+			* @param package: IEntity pointer of package delivered
+			* 
+			*/
+			void ColorChange(IEntity* package);
 
 			/**
 			* @brief Implements notification process for observers
