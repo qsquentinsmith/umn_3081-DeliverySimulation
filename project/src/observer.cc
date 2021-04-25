@@ -44,6 +44,13 @@ void Observer::Idle(IEntity* carrier) {
 	JsonHelper::AddStringToJsonObject(obj, "value", "idle");
 	Notify(obj, carrier);
 }
+	
+void Observer::ColorChange(IEntity* package) {
+	picojson::object obj = JsonHelper::CreateJsonNotification();
+	JsonHelper::AddStringToJsonObject(obj, "value", "updateDetails");
+	JsonHelper::AddObjectToJsonObject(obj, "details", ((EntityBase*) package)->GetDetails());
+	Notify(obj, package);
+}
 
 void Observer::Notify(picojson::object jsonObj, IEntity* entityObj) {
 	//for testing
