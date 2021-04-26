@@ -3,6 +3,7 @@
 #include "../include/delivery_simulation.h"
 #include <EntityProject/entity.h>
 #include "json_helper.h"
+#include "entity_base.h"
 #include "observer.h"
 
 
@@ -96,6 +97,16 @@ TEST_F(ObserverTest, IdleTest) {
 
   EXPECT_EQ(JsonHelper::ContainsKey(obj, "value"), true);
   EXPECT_EQ(JsonHelper::GetString(obj, "value"), "idle");
+}
+
+TEST_F(ObserverTest, ColorChangeTest) {
+  observer_->ColorChange(entity_);
+  picojson::object obj = observer_->GetJsonObject();
+
+  EXPECT_EQ(JsonHelper::ContainsKey(obj, "value"), true);
+  EXPECT_EQ(JsonHelper::GetString(obj, "value"), "updateDetails");
+  EXPECT_EQ(JsonHelper::ContainsKey(obj, "details"), true);
+  EXPECT_EQ(JsonHelper::GetObject(obj, "details"), ((EntityBase*) entity_)->GetDetails());
 }
 
 }  // namespace csci3081
