@@ -39,7 +39,7 @@ namespace csci3081 {
 	      	*
 	      	* @return A picojson object for an entity 
 	      	*/
-	  		const picojson::object& GetDetails();
+	  		picojson::object& GetDetails();
 
 	  	  	/**
 		  	* @brief Gets the entity's ID    
@@ -100,6 +100,13 @@ namespace csci3081 {
 		  	* 
 		  	*/			
 		  	void SetId(int id);
+			/**
+		  	* @brief Sets an entity's color to a hexidecimal color code 
+		  	* 
+		  	* @param color: Hexidecimal color code  
+		  	* 
+		  	*/
+			void SetColor(std::string color);
 
 		  	/**
 		  	* @brief Sets the version

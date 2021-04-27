@@ -11,6 +11,11 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new RobotFactory());
 	observer_ = new Observer();
 	deliveryManager = new DeliveryManager(observer_);
+	decorator = new Decorator();
+	decorator->AddDecoration(new Light_Weight());
+	decorator->AddDecoration(new Middle_Weight());
+	decorator->AddDecoration(new Heavy_Weight());
+
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -31,12 +36,10 @@ IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
 		((Carrier*) entity_)->SetGraph(graph_);
 		((Carrier*) entity_)->SetStrategy();
 	}
-	//else if (entityType == "package") {
-		//select color here based on weight
-		
-		//*****Notify package color changed*****
-		//observer_->ColorChange(entity_);
-	//}
+	else if (entityType == "package") {
+		decorator->Decorate(entity_);
+		observer_->ColorChange(entity_);
+	}
 
 	if (entity_) {
 		EntityBase* base = dynamic_cast<EntityBase*>(entity_);

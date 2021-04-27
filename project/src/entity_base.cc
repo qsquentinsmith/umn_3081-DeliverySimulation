@@ -4,7 +4,7 @@ namespace csci3081 {
 
   EntityBase::~EntityBase() {}
 
-  const picojson::object& EntityBase::GetDetails() { 
+  picojson::object& EntityBase::GetDetails() { 
     return details_; 
   } 
 
@@ -30,6 +30,10 @@ namespace csci3081 {
 
   void EntityBase::SetDetails(const picojson::object& obj) {
     id_++;
+  }
+
+  void EntityBase::SetColor(std::string color){
+    details_["color"] = picojson::value(color);
   }
 
   void EntityBase::SetId(int id) { 
