@@ -9,6 +9,7 @@
 #include "json_helper.h"
 #include <EntityProject/facade/delivery_system.h>
 #include <vector>
+#include "entity_base.h"
 
 namespace csci3081 {
 

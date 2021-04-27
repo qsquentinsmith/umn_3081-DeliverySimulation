@@ -15,6 +15,7 @@
 #include "delivery_manager.h"
 #include "smart_path.h"
 #include "observer.h"
+#include "decorator.h"
 
 namespace csci3081 {
 
@@ -134,7 +135,8 @@ class DeliverySimulation : public IDeliverySystem {
   const IGraph* graph_; 
   CompositeFactory* factory; 
   Observer* observer_;
-  DeliveryManager* deliveryManager; 
+  DeliveryManager* deliveryManager;
+  Decorator* decorator;
 
   int id_ = -1;
 };
