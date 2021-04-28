@@ -58,6 +58,7 @@ namespace csci3081 {
     target.push_back(0);
     target.push_back(100);
 
+    /*** GetRoute(): for parabolic ***/
     std::vector<std::vector<float>> route = strategy->GetRoute(source, target);
     ASSERT_EQ(route.size(), 41) <<"check parabolic size";
   }
@@ -94,12 +95,14 @@ TEST_F(StrategyTest, Beeline) {
     target.push_back(0);
     target.push_back(100);
     
-
+    /*** GetRoute(): for beeline ***/
     std::vector<std::vector<float>> route = strategy->GetRoute(source, target);
-
     ASSERT_EQ(route.size(), 4) << "Check beeline size";
 
   }
+
+
+/***** Smart Test for drone and robot are not tested to reliance on IGraph class ***/
 
 // TEST_F(StrategyTest, Smart) {
 

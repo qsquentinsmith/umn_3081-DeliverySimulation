@@ -27,6 +27,10 @@ namespace csci3081 {
 
     Battery battery_init = Battery(5000);
     ASSERT_EQ(battery_init.GetChargeRemaining(), 5000) << "Battery(5000), should be 5000"; 
+
+    /***** edge case initiation: intiate with negative number ***/
+    Battery battery_init_2 = Battery(-5000);
+    ASSERT_EQ(battery_init_2.GetChargeRemaining(), 0) << "Edge Case: Battery(-5000), should be 0"; 
   }
 
 
@@ -39,8 +43,21 @@ namespace csci3081 {
     ASSERT_EQ(battery.GetChargeRemaining(), 9500) << "Checking battery drain of 500";
 
     battery.DrainBattery(9500); 
-    ASSERT_EQ(battery.GetChargeRemaining(), 0);
-    ASSERT_EQ(battery.IsDead(), true);
+    ASSERT_EQ(battery.GetChargeRemaining(), 0) << "Checking battery when no charge";
+    ASSERT_EQ(battery.IsDead(), true) << "Check isDead when has no charge";
 
+    /**** edge case 1: try to drain below zero ***/
+    battery.DrainBattery(500);
+    ASSERT_EQ(battery.GetChargeRemaining(), 0) << "Edge Case: Drain below zero";
+    ASSERT_EQ(battery.IsDead(), true) << "Edge Case: Drain below zero";
+
+    /*** edge case 2: drain battery negative number ***/
+    battery.DrainBattery(-500);
+    ASSERT_EQ(battery.GetChargeRemaining(), 500) << "Edge Case 2: Drain battery negative number";
+
+    // flag already switched to dead (will implement flag switching when recharge feature added)
+    ASSERT_EQ(battery.IsDead(), true) << "Edge Case 2: drain battery negative number";
   }
+
+
 }  // namespace csci3081

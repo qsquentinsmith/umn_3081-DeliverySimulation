@@ -55,7 +55,7 @@ namespace csci3081 {
     package_direction_to_add.push_back(0);
     JsonHelper::AddStdFloatVectorToJsonObject(packageObj, "direction", package_direction_to_add);
     JsonHelper::AddFloatToJsonObject(packageObj, "radius", 1.0);
-
+    JsonHelper::AddFloatToJsonObject(packageObj, "weight", 1.0);
     Package package = Package(package_position_to_add, package_direction_to_add, 5.0, nullptr, packageObj);
 
     //customer setup
@@ -87,34 +87,35 @@ namespace csci3081 {
     JsonHelper::AddFloatToJsonObject(robotObj, "radius", 1.0);
 
     Robot robot = Robot(robot_position_to_add, robot_direction_to_add, robotObj);
-
-
+    
     //EntityFactory set up
     CompositeFactory compositeFactory;
+
     DroneFactory droneFactory;
     PackageFactory packageFactory;
     CustomerFactory customerFactory;
     RobotFactory robotFactory;
 
-    //Adding factories
+    /******* Tests *******/
+
+    /** AddFactory() **/
     compositeFactory.AddFactory(&droneFactory);
     compositeFactory.AddFactory(&packageFactory);
     compositeFactory.AddFactory(&customerFactory);
     compositeFactory.AddFactory(&robotFactory);
 
-    //Creating Entities with correct objects
+    /** CreateEntity(): Creating Entities with correct objects **/
     Drone* droneFromFactory = (Drone*) compositeFactory.CreateEntity(droneObj);
     Package* packageFromFactory = (Package*) compositeFactory.CreateEntity(packageObj);
     Customer* customerFromFactory = (Customer*) compositeFactory.CreateEntity(customerObj);
     Robot* robotFromFactory = (Robot*) compositeFactory.CreateEntity(robotObj);
 
-    EXPECT_EQ(typeid(Drone*), typeid(droneFromFactory));//is this the correct way to type check?
+    EXPECT_EQ(typeid(Drone*), typeid(droneFromFactory));
     EXPECT_EQ(typeid(Package*), typeid(packageFromFactory));
     EXPECT_EQ(typeid(Customer*), typeid(customerFromFactory));
     EXPECT_EQ(typeid(Robot*), typeid(robotFromFactory));
 
-    //Creating Entities with incorrect objects
-
+    /** CreateEntity(): Creating Entities with incorrect objects **/
     droneFromFactory = (Drone*) compositeFactory.CreateEntity(robotObj);
     packageFromFactory = (Package*) compositeFactory.CreateEntity(customerObj);
     customerFromFactory = (Customer*) compositeFactory.CreateEntity(packageObj);
