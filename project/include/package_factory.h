@@ -34,6 +34,8 @@ namespace csci3081 {
 		    * @return A Package pointer casted as an IEntity pointer or nullptr
 		    */
             IEntity* CreateEntity(const picojson::object& val);
+		private:
+			double weight = 1.0;
 	};
 
 }  // namespace csci3081
