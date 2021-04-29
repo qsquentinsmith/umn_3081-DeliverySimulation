@@ -19,11 +19,9 @@ namespace csci3081 {
  */
 	class HeavyWeight : public PackageDecorator  {
 		public:
-		   /**
-		    * @brief Changes the packages color to red if it weighs more than 4.0 
-		    * 
-		    */
-            void Decorate();
+			HeavyWeight(Package* package) : PackageDecorator(package) {}
+
+			void SetDynamic(bool val);
 
 	};
 }  // namespace csci3081

@@ -19,11 +19,9 @@ namespace csci3081 {
  */
 	class LightWeight : public PackageDecorator  {
 		public:
-		     /**
-		    * @brief Changes the packages color to green if it weighs between 0 and 2.0 
-		    * 
-		    */
-            void Decorate();
+			LightWeight(Package* package) : PackageDecorator(package) {}
+
+			void SetDynamic(bool val);
 
 	};
 }  // namespace csci3081

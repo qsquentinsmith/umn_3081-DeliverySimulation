@@ -36,13 +36,20 @@ IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
 		((Carrier*) entity_)->SetGraph(graph_);
 		((Carrier*) entity_)->SetStrategy();
 	}
-	else if (entityType == "package") {
-		//decorator->Decorate();
-		if (JsonHelper::ContainsKey(((Package*)entity_)->GetDetails(), "weight")) {
-			PackageDecorator* package = new PackageDecorator((Package*)entity_); 
-    	}
-		observer_->ColorChange(entity_);
-	}
+	// else if (entityType == "package") {
+	// 	// AbstractPackage* package = new PackageDecorator((AbstractPackage*)entity_); 
+	// 	// AbstractPackage* decoratedPackage = nullptr; 
+	// 	// if (JsonHelper::ContainsKey(((Package*)entity_)->GetDetails(), "weight")) {
+	// 	// 	float weight = ((Package*) package)->GetWeight(); 
+	// 	// 	if (weight >= 0.0 && weight < 2.0) {
+	// 	// 		decoratedPackage = new LightWeight(package); 
+	// 	// 	} 
+    // 	// }
+
+	// // 	if (decoratedPackage) { decoratedPackage->Decorate(); }
+
+	// 	observer_->ColorChange(entity_);
+	// }
 
 	if (entity_) {
 		EntityBase* base = dynamic_cast<EntityBase*>(entity_);

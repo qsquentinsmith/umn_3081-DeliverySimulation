@@ -9,7 +9,7 @@
  ******************************************************************************/
 // #include "entity_base.h"
 // #include "package.h"
-#include "abstract_package.h"
+//#include "abstract_package.h"
 #include "package.h"
 namespace csci3081 {
 
@@ -20,18 +20,18 @@ namespace csci3081 {
  * @brief The interface for a decorated package 
  *
  */
-	class PackageDecorator  {
+	class PackageDecorator : public EntityBase {
 		public:
-            PackageDecorator(AbstractPackage* package);
+            PackageDecorator(Package* package);
 
-		   /**
-		    * @brief Base Decorator Method 
-		    * 
-		    */
-            void Decorate();
+			const vector<float>& GetPosition() const; 
+
+			const vector<float>& GetDirection() const; 
+
+			void SetDynamic(bool val);
 
         protected: 
-            AbstractPackage* package_; 
+            Package* package_; 
 	};
 }  // namespace csci3081
 

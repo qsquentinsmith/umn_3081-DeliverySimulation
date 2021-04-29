@@ -19,11 +19,9 @@ namespace csci3081 {
  */
 	class MiddleWeight : public PackageDecorator {
 		public:
-		    /**
-		    * @brief Changes the packages color to yellow if it weighs between 2.0 and 4.0 
-		    * 
-		    */
-            void Decorate();
+			MiddleWeight(Package* package) : PackageDecorator(package) {}
+
+			void SetDynamic(bool val);
 
 	};
 }  // namespace csci3081

@@ -21,25 +21,26 @@ namespace csci3081 {
  * @brief The decorator is a base class that contains a vecotr of all decorations to be applied in the simulation 
  * 
  */ 
-  class Decorator : public PackageDecorator {
+  class Decorator {
    public:
-      Decorator(AbstractPackage* package) : PackageDecorator(package) {}
+      void GetDecoratedPackage(Package* package);
+      // Decorator(AbstractPackage* package) : PackageDecorator(package) {}
 
-      /**
-	* @brief Calls decorate on all decorations that apply to entity in the decorations vector
-	* 
-	*/
-      void Decorate();
+      // /**
+	// * @brief Calls decorate on all decorations that apply to entity in the decorations vector
+	// * 
+	// */
+      // void Decorate();
 
-      /**
-	* @brief Adds a new decoration to the decorations vector
-	* 
-	* @param decoration: Decoration to be added to the decorations vector
-	*/
-      void AddDecoration(PackageDecorator* decoration);
+      // /**
+	// * @brief Adds a new decoration to the decorations vector
+	// * 
+	// * @param decoration: Decoration to be added to the decorations vector
+	// */
+      // void AddDecoration(PackageDecorator* decoration);
       
-  private:
-        vector<PackageDecorator*> decorations;
+//   private:
+//         vector<PackageDecorator*> decorations;
   }; 
 
 };
