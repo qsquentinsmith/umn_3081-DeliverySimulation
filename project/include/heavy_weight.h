@@ -7,7 +7,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "idecorate.h"
+ #include "package_decorator.h"
 namespace csci3081 {
 
 /*******************************************************************************
@@ -17,14 +17,13 @@ namespace csci3081 {
  * @brief A decoration used in the decorator pattern that changes heavier packages to red
  *
  */
-	class Heavy_Weight : public IDecorate  {
+	class HeavyWeight : public PackageDecorator  {
 		public:
 		   /**
 		    * @brief Changes the packages color to red if it weighs more than 4.0 
 		    * 
-	        * @param entity: entity to be decorated 
 		    */
-            void Decorate(IEntity* entity);
+            void Decorate();
 
 	};
 }  // namespace csci3081

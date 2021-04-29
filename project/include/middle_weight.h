@@ -7,7 +7,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "idecorate.h"
+#include "package_decorator.h"
 namespace csci3081 {
 
 /*******************************************************************************
@@ -17,14 +17,13 @@ namespace csci3081 {
  * @brief A decoration used in the decorator pattern that changes medium weight packages to yellow
  *
  */
-	class Middle_Weight : public IDecorate  {
+	class MiddleWeight : public PackageDecorator {
 		public:
 		    /**
 		    * @brief Changes the packages color to yellow if it weighs between 2.0 and 4.0 
 		    * 
-	        * @param entity: entity to be decorated 
 		    */
-            void Decorate(IEntity* entity);
+            void Decorate();
 
 	};
 }  // namespace csci3081

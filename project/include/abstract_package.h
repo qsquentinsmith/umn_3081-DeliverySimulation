@@ -1,32 +1,33 @@
 /**
- *@file light_weight.h
+ *@file abstract_package.h
  */
-#ifndef LIGHT_WEIGHT_H_
-#define LIGHT_WEIGHT_H_
+#ifndef ABSTRACT_PACKAGE_H_
+#define ABSTRACT_PACKAGE_H_
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "package_decorator.h"
+// #include "entity_base.h"
+// #include "package.h"
 namespace csci3081 {
 
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief A decoration used in the decorator pattern that changes lighter packages to green
+ * @brief The interface for a decorated package 
  *
  */
-	class LightWeight : public PackageDecorator  {
+	class AbstractPackage  {
 		public:
-		     /**
-		    * @brief Changes the packages color to green if it weighs between 0 and 2.0 
+		   /**
+		    * @brief Method to be overloaded by the Package class and its decorator classes
 		    * 
 		    */
-            void Decorate();
+            virtual void Decorate() = 0;
 
 	};
 }  // namespace csci3081
 
 
-#endif  // LIGHT_WEIGHT_H_
+#endif  // ABSTRACT_PACKAGE_H_
