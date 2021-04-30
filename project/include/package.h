@@ -109,6 +109,12 @@ namespace csci3081 {
       */
       Customer* GetCustomer(); 
 
+      /**
+      * @brief Sets whether the package is moving or not  
+      * 
+      * @param val: true or false depending on whether the package should be moving   
+      *
+      */
       void SetDynamic(bool val); 
 
   private:

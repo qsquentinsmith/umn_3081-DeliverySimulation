@@ -50,6 +50,14 @@ namespace csci3081 {
      */
       const std::vector<float>& GetDirection() const;
 
+      /**
+      * @brief EntityBase virtual function that is overriden  
+      * 
+      * @param val: true or false depending on whether the customer should be moving   
+      *
+      * Never used by the Customer class 
+      *
+      */
       void SetDynamic(bool val) {}
 
 

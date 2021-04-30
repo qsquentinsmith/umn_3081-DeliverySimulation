@@ -117,9 +117,8 @@ namespace csci3081 {
 		  	*/
 		  	void SetVersion(int val);
 
-			//VIRTUAL METHOD 
 		  	/**
-		  	* @brief Sets whether the entity is moving or not  
+		  	* @brief Virtual method for entities that sets whether the entity is moving or not  
 		  	* 
 		  	* @param val: true or false depending on whether the entity should be moving   
 		  	*
