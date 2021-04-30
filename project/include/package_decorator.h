@@ -7,10 +7,8 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-// #include "entity_base.h"
-// #include "package.h"
-//#include "abstract_package.h"
 #include "package.h"
+
 namespace csci3081 {
 
 /*******************************************************************************
@@ -22,12 +20,34 @@ namespace csci3081 {
  */
 	class PackageDecorator : public EntityBase {
 		public:
+			/**
+			* @brief Base constructor for all package decorations 
+			* 
+			* @param package: a Package pointer with weight information 
+			*
+			*/
             PackageDecorator(EntityBase* package);
 
+			/**
+			* @brief Overriden IEntity virtual method, uses instance variable's GetPosition() 
+			* 
+			* @return a vector of floats indicating the package position  
+			*/
 			const vector<float>& GetPosition() const; 
 
+			/**
+			* @brief Overriden IEntity virtual method, uses instance variable's GetDirection()   
+			* 
+			* @return a vector of floats indicating the package direction   
+			*/
 			const vector<float>& GetDirection() const; 
 
+			/**
+		  	* @brief Overriden EntityBase virtual method, uses instance variable's SetDynamic(bool val)
+		  	* 
+		  	* @param val: true or false depending on whether the entity should be moving   
+		  	* 
+		  	*/
 			void SetDynamic(bool val);
 
         protected: 
