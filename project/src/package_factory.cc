@@ -4,7 +4,11 @@ namespace csci3081 {
 
     IEntity* PackageFactory::CreateEntity(const picojson::object& val) {
         if (JsonHelper::GetString(val, "type") == "package") {
-            double weight = JsonHelper::GetDouble(val, "weight");
+            
+            if(JsonHelper::ContainsKey(val, "weight")) {
+                weight = JsonHelper::GetDouble(val, "weight");
+            }
+            
             std::vector<float> position = JsonHelper::GetStdFloatVector(val, "position");
 	        std::vector<float> direction = JsonHelper::GetStdFloatVector(val, "direction");
             return (IEntity*) (new Package(position, direction, ((float) weight), nullptr, val));

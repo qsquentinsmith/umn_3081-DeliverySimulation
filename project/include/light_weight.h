@@ -7,7 +7,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "idecorate.h"
+#include "package_decorator.h"
 namespace csci3081 {
 
 /*******************************************************************************
@@ -17,14 +17,11 @@ namespace csci3081 {
  * @brief A decoration used in the decorator pattern that changes lighter packages to green
  *
  */
-	class Light_Weight : public IDecorate  {
+	class LightWeight : public PackageDecorator  {
 		public:
-		     /**
-		    * @brief Changes the packages color to green if it weighs between 0 and 2.0 
-		    * 
-	        * @param entity: entity to be decorated 
-		    */
-            void Decorate(IEntity* entity);
+			LightWeight(Package* package) : PackageDecorator(package) {}
+
+			void SetDynamic(bool val);
 
 	};
 }  // namespace csci3081

@@ -1,11 +1,8 @@
 #include "middle_weight.h"
 
 namespace csci3081 {
-    void Middle_Weight::Decorate(IEntity* entity){
-        if(((Package*)entity)->GetWeight() >= 2.0 && ((Package*)entity)->GetWeight() < 4.0){
-            ((EntityBase*)entity)->SetColor("0xF7DC6F");
-        }
-        
-
+    void MiddleWeight::SetDynamic(bool val){
+        package_->SetDynamic(val);
+        ((Package*) package_)->GetDetails()["color"] = picojson::value("0xF7DC6F");
     }
 }

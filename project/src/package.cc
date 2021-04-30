@@ -48,4 +48,8 @@ namespace csci3081 {
     customer = cus; 
   }
 
+  void Package::Decorate() {
+    //NO COLOR 
+  }
+
 }
