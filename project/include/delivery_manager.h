@@ -10,7 +10,7 @@
 #include <string>
 #include "observer.h"
 using std::string; 
-#include "decorator.h"
+#include "decorator_factory.h"
 
 namespace csci3081 {
 
