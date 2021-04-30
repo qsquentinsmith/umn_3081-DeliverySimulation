@@ -8,7 +8,6 @@
  * Includes
  ******************************************************************************/
 #include "entity_base.h"
-#include "abstract_package.h"
 #include "customer.h"
 
 namespace csci3081 {
@@ -20,7 +19,7 @@ namespace csci3081 {
  * @brief The Package Class represents the package to be delivered. 
  * 
  */ 
-  class Package : public csci3081::EntityBase, public AbstractPackage {
+  class Package : public csci3081::EntityBase {
    public:
       /**
       * @brief Constructs a Package object  
