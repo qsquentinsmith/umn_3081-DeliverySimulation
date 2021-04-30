@@ -44,7 +44,6 @@ namespace csci3081 {
    ******************************************************************************/
   
   TEST_F(PackageFactoryTest, CreateEntityTest) {
-
     PackageFactory packageFactory;
     IEntity* packageFromFactory = packageFactory.CreateEntity(obj);
 

@@ -4,7 +4,6 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 #include <string>
-//#include "battery.h"
 
 #include <iostream>
 
@@ -15,7 +14,8 @@ namespace csci3081 {
     class PackageDecoratorTest : public ::testing::Test {
         protected:
             Package* package;
-            Decorator* decorator; 
+            DecoratorFactory* decoratorFactory; 
+            EntityBase* decoratedPackage;
             picojson::object obj;
             std::vector<float> position_to_add;
             std::vector<float> direction_to_add;
@@ -40,6 +40,8 @@ namespace csci3081 {
 
             package = new Package(position_to_add, direction_to_add, weight, nullptr, obj); 
 
+            decoratedPackage = decoratorFactory->GetDecoratedPackage(package);
+            
         }
         virtual void TearDown() {
             delete package;
@@ -51,35 +53,25 @@ namespace csci3081 {
    ******************************************************************************/
 
     TEST_F(PackageDecoratorTest, GetPackageDecoratorTest) {
-        decorator->GetDecoratedPackage(package);
-
-        ASSERT_NE(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
-    
-        obj["color"] = picojson::value("0xEC7063");
-
-        ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+        ASSERT_NE(decoratedPackage, nullptr);
     }
+
 
     TEST_F(PackageDecoratorTest, GetPositionTest) {
-    
-        ASSERT_EQ(((PackageDecorator*) package)->GetPosition(), ((Package*) package)->GetPosition());
-
+        ASSERT_EQ(decoratedPackage->GetDirection(), package->GetDirection());
     }
+
 
     TEST_F(PackageDecoratorTest, GetDirectionTest) {
-
-        ASSERT_EQ(((PackageDecorator*) package)->GetDirection(), ((Package*) package)->GetDirection());
-
+        ASSERT_EQ(decoratedPackage->GetDirection(), package->GetDirection());
     }
 
+
     TEST_F(PackageDecoratorTest, SetDynamicTest) {
-        PackageDecorator* decorated;
-        decorated = new LightWeight(package);
-        ((LightWeight*) decorated)->SetDynamic(true);
-        ASSERT_EQ(((Package*) package)->IsDynamic(), true);
-        ((LightWeight*) decorated)->SetDynamic(false);
-        ASSERT_EQ(((Package*) package)->IsDynamic(), false);
-        
+        decoratedPackage->SetDynamic(true);
+        ASSERT_EQ(package->IsDynamic(), true);
+        decoratedPackage->SetDynamic(false);
+        ASSERT_EQ(package->IsDynamic(), false);
     }
 
 

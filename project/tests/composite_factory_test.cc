@@ -125,7 +125,6 @@ namespace csci3081 {
     EXPECT_EQ(typeid(Package*), typeid(packageFromFactory));
     EXPECT_EQ(typeid(Customer*), typeid(customerFromFactory));
     EXPECT_EQ(typeid(Robot*), typeid(robotFromFactory));
-
    }
 
 }  // namespace csci3081

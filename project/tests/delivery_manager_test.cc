@@ -79,6 +79,7 @@ namespace csci3081 {
    
   }
 
+
    TEST_F(DeliveryManagerTest, AddWaitingCarrierTest) {
     Observer* observer_ = new Observer();
 	  DeliveryManager* deliveryManager = new DeliveryManager(observer_);
@@ -89,6 +90,7 @@ namespace csci3081 {
     ASSERT_EQ(deliveryManager->RemoveWaitingCarrier(), drone);
 
   }
+
 
   TEST_F(DeliveryManagerTest, RemoveWaitingCarrierTest) {
     Observer* observer_ = new Observer();
@@ -114,12 +116,10 @@ namespace csci3081 {
     deliveryManager->AddWaitingCarrier((IEntity*) drone);
     deliveryManager->AddWaitingCarrier((IEntity*) drone2);
  
-
     /*** AddWaitingPackage(), RemoveWaitingPackage() ***/
     deliveryManager->AddWaitingPackage((IEntity*) package);
     deliveryManager->AddWaitingPackage((IEntity*) package2);
   
-
     /*** GetFirstCarrierAvailable() ***/
     ASSERT_EQ(deliveryManager->GetFirstCarrierAvailable(), drone);
   }

@@ -59,8 +59,17 @@ namespace csci3081 {
   TEST_F(PackageTest, PackageConstructor) {
     /*** package(): Constructor ***/
     ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
-
   }
+
+
+  TEST_F(PackageTest, DynamicTest) {
+    /*** SetDynamic() ***/
+    package->SetDynamic(true);
+    ASSERT_EQ(package->IsDynamic(), true) << "isdynamic";
+    package->SetDynamic(false);
+    ASSERT_EQ(package->IsDynamic(), false) << "isdynamic";
+  }
+
 
   TEST_F(PackageTest, GetPositionTest) {
     /*** GetPosition() ***/
@@ -69,6 +78,7 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(package->GetPosition()[2], -228.623);
   }
 
+
   TEST_F(PackageTest, GetDirectionTest) {
     /*** GetDirection() ***/
     ASSERT_FLOAT_EQ(package->GetDirection()[0], 1.0);
@@ -76,15 +86,18 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(package->GetDirection()[2], 0.0);
   }
 
+
   TEST_F(PackageTest, GetWeightTest) {
     /*** GetWeight() ***/
     ASSERT_FLOAT_EQ(package->GetWeight(), 5.0); 
   }
 
+
   TEST_F(PackageTest, GetCustomerTest) {
     /*** GetCustomer() ***/
     ASSERT_EQ(package->GetCustomer(), customer);
   }
+
 
   TEST_F(PackageTest, GetCustomerPositionTest) {
     /*** GetCustomerPosition() ***/
@@ -92,6 +105,7 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(package->GetCustomerPosition()[1], 253.883);
     ASSERT_FLOAT_EQ(package->GetCustomerPosition()[2], -228.623);
   }
+
 
   TEST_F(PackageTest, SetPositionTest) {
     /*** SetPosition(), GetPosition() ***/
@@ -105,6 +119,7 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(package->GetPosition()[2], 0.0);
   }
 
+
   TEST_F(PackageTest, SetDirectionTest) {
     /*** SetDirection(), GetDirection() ***/
     std::vector<float> new_dir_;
@@ -117,8 +132,8 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(package->GetDirection()[2], 1.0);
   }
 
-  TEST_F(PackageTest, SetCustomerTest) {
 
+  TEST_F(PackageTest, SetCustomerTest) {
     std::vector<float> new_dir_;
     new_dir_.push_back(1.0);
     new_dir_.push_back(1.0);
@@ -135,7 +150,44 @@ namespace csci3081 {
 
     /*** GetCustomer() ***/
     ASSERT_EQ(package->GetCustomer(), customer2);
+  }
 
+
+  TEST_F(PackageTest, PackageIDTest) {
+    ((EntityBase*)package)-> SetId(30);
+    ASSERT_EQ(((EntityBase*)package)-> GetId(), 30);
+    ((EntityBase*)package)-> SetId(40);
+    ASSERT_EQ(((EntityBase*)package)-> GetId(), 40);
+  }
+
+
+  TEST_F(PackageTest, PackageDetailsTest) {
+    ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+  }
+
+
+  TEST_F(PackageTest, PackageRadiusTest) {
+    ASSERT_EQ(package->GetRadius(), 1.0);
+  }
+
+
+  TEST_F(PackageTest, PackageNameTest) {
+    ASSERT_EQ(package->GetName(), "");
+  }
+
+
+  TEST_F(PackageTest, PackageColorTest) {
+    package->SetColor("0xF7DC6F");
+    ASSERT_NE(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+
+    obj["color"] = picojson::value("0xF7DC6F");
+    ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+  }
+
+
+  TEST_F(PackageTest, PackageVersionTest) {
+    package->SetVersion(1);
+    ASSERT_EQ(package->GetVersion(), 1) << "version";
   }
 
   

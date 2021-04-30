@@ -57,5 +57,39 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(customer->GetPosition()[2], -228.623);
   }
 
+  TEST_F(CustomerTest, CustomerIDTest) {
+    ((EntityBase*)customer)-> SetId(30);
+    ASSERT_EQ(((EntityBase*)customer)-> GetId(), 30);
+    ((EntityBase*)customer)-> SetId(40);
+    ASSERT_EQ(((EntityBase*)customer)-> GetId(), 40);
+  }
+
+  TEST_F(CustomerTest, CustomerDetailsTest) {
+    ASSERT_EQ(picojson::value(customer->GetDetails()).serialize(), picojson::value(obj).serialize());
+
+  }
+
+  TEST_F(CustomerTest, CustomerRadiusTest) {
+    ASSERT_EQ(customer->GetRadius(), 1.0);
+  }
+
+  TEST_F(CustomerTest, CustomerNameTest) {
+    ASSERT_EQ(customer->GetName(), "");
+  }
+
+  TEST_F(CustomerTest, CustomerColorTest) {
+    customer->SetColor("0xF7DC6F");
+
+    ASSERT_NE(picojson::value(customer->GetDetails()).serialize(), picojson::value(obj).serialize());
+
+    obj["color"] = picojson::value("0xF7DC6F");
+
+    ASSERT_EQ(picojson::value(customer->GetDetails()).serialize(), picojson::value(obj).serialize());
+  }
+
+  TEST_F(CustomerTest, CustomerVersionTest) {
+    customer->SetVersion(1);
+    ASSERT_EQ(customer->GetVersion(), 1) << "version";
+  }
 
 }  // namespace csci3081

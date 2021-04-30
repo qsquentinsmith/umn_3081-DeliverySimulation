@@ -15,6 +15,7 @@ namespace csci3081 {
    protected:
       Robot* robot;
       picojson::object obj;
+      
     virtual void SetUp() {
         //setting up picojson::object for creat identity
       obj = JsonHelper::CreateJsonObject();
@@ -51,7 +52,6 @@ namespace csci3081 {
     /*** CreateEntity() ***/
     ASSERT_NE(robotFromFactory, nullptr);
 
-   
     ASSERT_FLOAT_EQ(robot->GetPosition()[0], robotFromFactory->GetPosition().at(0));
     ASSERT_FLOAT_EQ(robot->GetPosition()[1], robotFromFactory->GetPosition().at(1));
     ASSERT_FLOAT_EQ(robot->GetPosition()[2], robotFromFactory->GetPosition().at(2));

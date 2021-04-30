@@ -15,6 +15,7 @@ namespace csci3081 {
     protected:
       Robot* robot;
       picojson::object obj;
+      
       virtual void SetUp() {
 
         //robot setup 
@@ -48,12 +49,14 @@ namespace csci3081 {
     ASSERT_EQ(picojson::value(robot->GetDetails()).serialize(), picojson::value(obj).serialize());
   }
 
+
   TEST_F(RobotTest, GetPositionTest) {
     /*** GetPosition() ***/
     ASSERT_FLOAT_EQ(robot->GetPosition()[0], 498.292);
     ASSERT_FLOAT_EQ(robot->GetPosition()[1], 253.883);
     ASSERT_FLOAT_EQ(robot->GetPosition()[2], -228.623);
   }
+
 
   TEST_F(RobotTest, GetDirectionTest) {
     /*** GetDirection() ***/
@@ -67,11 +70,11 @@ namespace csci3081 {
     /*** SetStrategy(): If compiling and running then it is run correctly. Need Carrier get strategy to test ***/ 
     robot->SetStrategy();
   }
-
-    /*** 
-      Public Function not used are:
-        - GetRoute: smart path relies on other classes. Would be tested in stategy_test 
-    ***/
+  
+  /*** 
+    Public Function not used are:
+      - GetRoute: smart path relies on other classes. Would be tested in stategy_test 
+  ***/
 
 
 }  // namespace csci3081

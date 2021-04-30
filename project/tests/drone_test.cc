@@ -3,7 +3,7 @@
 #include "../include/delivery_simulation.h"
 #include <EntityProject/entity.h>
 #include "json_helper.h"
-//#include "drone.h"
+
 
 #include <iostream>
 
@@ -50,6 +50,7 @@ namespace csci3081 {
     ASSERT_EQ(picojson::value(drone->GetDetails()).serialize(), picojson::value(obj).serialize());
   }
 
+
   TEST_F(DroneTest, GetPositionTest) {
     /*** GetPosition() ***/
     ASSERT_FLOAT_EQ(drone->GetPosition()[0], 498.292);
@@ -57,12 +58,14 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(drone->GetPosition()[2], -228.623);
   }
 
+
   TEST_F(DroneTest, GetDirectionTest) {
     /*** GetDirection() ***/
     ASSERT_FLOAT_EQ(drone->GetDirection()[0], 1.0);
     ASSERT_FLOAT_EQ(drone->GetDirection()[1], 0.0);
     ASSERT_FLOAT_EQ(drone->GetDirection()[2], 0.0);
   }
+
 
   TEST_F(DroneTest, TestDroneFunctions) {
     /*** SetStrategy(): If compiling and running then it is run correctly. Need Carrier get strategy to test ***/ 

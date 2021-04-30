@@ -12,10 +12,10 @@ namespace csci3081 {
 
     using entity_project::IEntity;
 
-    class DecoratorTest : public ::testing::Test {
+    class DecoratorFactoryTest : public ::testing::Test {
         protected:
             Package* package;
-            Decorator* decorator; 
+            DecoratorFactory* decoratorFactory; 
             picojson::object obj;
             std::vector<float> position_to_add;
             std::vector<float> direction_to_add;
@@ -51,45 +51,43 @@ namespace csci3081 {
    * Test Cases
    ******************************************************************************/
 
-    TEST_F(DecoratorTest, GetDecoratedPackageTest) {
-        decorator->GetDecoratedPackage(package);
-
+    TEST_F(DecoratorFactoryTest, GetDecoratedPackageTest) {
+        EntityBase* decoratedPackage = decoratorFactory->GetDecoratedPackage(package);
+        decoratedPackage->SetDynamic(true); 
         ASSERT_NE(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
     
         obj["color"] = picojson::value("0xEC7063");
-
         ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
     }
 
 
-    TEST_F(DecoratorTest, HeavyWeightTest) {
-        
+    TEST_F(DecoratorFactoryTest, HeavyWeightTest) {
         package = new Package(position_to_add, direction_to_add, 12.0, nullptr, obj);
 
-        decorator->GetDecoratedPackage(package);
-
+        EntityBase* decoratedPackage = decoratorFactory->GetDecoratedPackage(package);
+        decoratedPackage->SetDynamic(true);
         obj["color"] = picojson::value("0xEC7063");
 
         ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
     }
 
 
-    TEST_F(DecoratorTest, MiddleWeightTest) {
+    TEST_F(DecoratorFactoryTest, MiddleWeightTest) {
         package = new Package(position_to_add, direction_to_add, 3.0, nullptr, obj);
 
-        decorator->GetDecoratedPackage(package);
-    
+        EntityBase* decoratedPackage = decoratorFactory->GetDecoratedPackage(package);
+        decoratedPackage->SetDynamic(true);
         obj["color"] = picojson::value("0xF7DC6F");
 
         ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
     }
 
 
-    TEST_F(DecoratorTest, LightWeightTest) {
+    TEST_F(DecoratorFactoryTest, LightWeightTest) {
         package = new Package(position_to_add, direction_to_add, 1.0, nullptr, obj);
 
-        decorator->GetDecoratedPackage(package);
-    
+        EntityBase* decoratedPackage = decoratorFactory->GetDecoratedPackage(package);
+        decoratedPackage->SetDynamic(true);
         obj["color"] = picojson::value("0x82E0AA");
 
         ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
