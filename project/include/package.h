@@ -94,7 +94,7 @@ namespace csci3081 {
       /**
       * @brief Sets the package's associated customer 
       * 
-      * @param val: Pointer for associated customer   
+      * @param cus: Pointer for associated customer   
       *
       * Used while schedulig a delivery, giving package a destination  
       * 

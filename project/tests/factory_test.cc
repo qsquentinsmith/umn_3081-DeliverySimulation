@@ -3,8 +3,6 @@
 #include "../include/delivery_simulation.h"
 #include <EntityProject/entity.h>
 #include "json_helper.h"
-
-
 #include <iostream>
 
 namespace csci3081 {
@@ -28,16 +26,16 @@ class FactoryTest : public ::testing::Test {
 TEST_F(FactoryTest, DroneCreated) {
   picojson::object obj = JsonHelper::CreateJsonObject();
   JsonHelper::AddStringToJsonObject(obj, "type", "drone");
-  std::vector<float> position_to_add;
-  position_to_add.push_back(498.292);
-  position_to_add.push_back(253.883);
-  position_to_add.push_back(-228.623);
-  JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-  std::vector<float> direction_to_add;
-  direction_to_add.push_back(1);
-  direction_to_add.push_back(0);
-  direction_to_add.push_back(0);
-  JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
+  std::vector<float> positionToAdd;
+  positionToAdd.push_back(498.292);
+  positionToAdd.push_back(253.883);
+  positionToAdd.push_back(-228.623);
+  JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
+  std::vector<float> directionToAdd;
+  directionToAdd.push_back(1);
+  directionToAdd.push_back(0);
+  directionToAdd.push_back(0);
+  JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
   JsonHelper::AddFloatToJsonObject(obj, "speed", 30.0);
   JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
   IEntity* entity = system->CreateEntity(obj);
@@ -46,17 +44,16 @@ TEST_F(FactoryTest, DroneCreated) {
   ASSERT_NE(entity, nullptr) << "The entity created";
   system->AddEntity(entity);
   ASSERT_EQ(1, system->GetEntities().size());
-  ASSERT_FLOAT_EQ(entity->GetPosition()[0], position_to_add[0]);
-  ASSERT_FLOAT_EQ(entity->GetPosition()[1], position_to_add[1]);
-  ASSERT_FLOAT_EQ(entity->GetPosition()[2], position_to_add[2]);
-  ASSERT_FLOAT_EQ(entity->GetDirection()[0], direction_to_add[0]);
-  ASSERT_FLOAT_EQ(entity->GetDirection()[1], direction_to_add[1]);
-  ASSERT_FLOAT_EQ(entity->GetDirection()[2], direction_to_add[2]);
+  ASSERT_FLOAT_EQ(entity->GetPosition()[0], positionToAdd[0]);
+  ASSERT_FLOAT_EQ(entity->GetPosition()[1], positionToAdd[1]);
+  ASSERT_FLOAT_EQ(entity->GetPosition()[2], positionToAdd[2]);
+  ASSERT_FLOAT_EQ(entity->GetDirection()[0], directionToAdd[0]);
+  ASSERT_FLOAT_EQ(entity->GetDirection()[1], directionToAdd[1]);
+  ASSERT_FLOAT_EQ(entity->GetDirection()[2], directionToAdd[2]);
 
   // Checks that when GetDetails() is called, the entity returns 
   //  the picojson object that was used to initialize it
   ASSERT_EQ(picojson::value(system->GetEntities()[0]->GetDetails()).serialize(), picojson::value(obj).serialize());
-
 }
 
 }  // namespace csci3081

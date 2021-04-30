@@ -11,11 +11,6 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new RobotFactory());
 	observer_ = new Observer();
 	deliveryManager = new DeliveryManager(observer_);
-	// decorator = new Decorator();
-	// decorator->AddDecoration(new Light_Weight());
-	// decorator->AddDecoration(new Middle_Weight());
-	// decorator->AddDecoration(new Heavy_Weight());
-
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -36,27 +31,14 @@ IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
 		((Carrier*) entity_)->SetGraph(graph_);
 		((Carrier*) entity_)->SetStrategy();
 	}
-	// else if (entityType == "package") {
-	// 	// AbstractPackage* package = new PackageDecorator((AbstractPackage*)entity_); 
-	// 	// AbstractPackage* decoratedPackage = nullptr; 
-	// 	// if (JsonHelper::ContainsKey(((Package*)entity_)->GetDetails(), "weight")) {
-	// 	// 	float weight = ((Package*) package)->GetWeight(); 
-	// 	// 	if (weight >= 0.0 && weight < 2.0) {
-	// 	// 		decoratedPackage = new LightWeight(package); 
-	// 	// 	} 
-    // 	// }
 
-	// // 	if (decoratedPackage) { decoratedPackage->Decorate(); }
-
-	// 	observer_->ColorChange(entity_);
-	// }
 
 	if (entity_) {
 		EntityBase* base = dynamic_cast<EntityBase*>(entity_);
 		base->SetId(Uid());
 		return entity_; 
 	}
-	return NULL;
+	return nullptr;
 }
 
 void DeliverySimulation::AddFactory(IEntityFactory* factory) {

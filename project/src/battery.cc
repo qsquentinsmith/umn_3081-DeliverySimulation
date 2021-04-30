@@ -3,23 +3,30 @@
 namespace csci3081 {
 
    Battery::Battery(float maxCharge) {
-    charge_remaining_ = maxCharge; 
-    max_charge_ = maxCharge;
+
+    if (maxCharge < 0){
+      chargeRemaining = 0;
+      this->maxCharge = 0;
+    }
+    else{
+      chargeRemaining = maxCharge; 
+      this->maxCharge = maxCharge;
+    }
   }
 
   bool Battery::IsDead() {
-    return dead_battery_;
+    return deadBattery;
   }
 
   float Battery::GetChargeRemaining() {
-    return charge_remaining_; 
+    return chargeRemaining; 
   }
 
   void Battery::DrainBattery(float dt) {
-    charge_remaining_ -= dt;
-    if (charge_remaining_ <= 0 ){
-      charge_remaining_ = 0;
-      dead_battery_ = true;
+    chargeRemaining -= dt;
+    if (chargeRemaining <= 0 ){
+      chargeRemaining = 0;
+      deadBattery = true;
     }
   } 
 

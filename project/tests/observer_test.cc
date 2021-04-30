@@ -5,8 +5,6 @@
 #include "json_helper.h"
 #include "entity_base.h"
 #include "observer.h"
-
-
 #include <iostream>
 #include <string>
 
@@ -18,15 +16,16 @@ class ObserverTest : public ::testing::Test {
  protected:
   virtual void SetUp() {
     observer_ = new Observer();
-    new_observer = nullptr;
+    newObserver = nullptr;
     entity_ = nullptr;
+
   }
   virtual void TearDown() {
     delete observer_;
   }
 
   Observer* observer_;
-  IEntityObserver* new_observer;
+  IEntityObserver* newObserver;
   IEntity* entity_;
 };
 
@@ -36,15 +35,15 @@ class ObserverTest : public ::testing::Test {
 
 TEST_F(ObserverTest, AddObserverTest) {
   EXPECT_EQ(observer_->GetObserverList().size(), 0);
-  observer_->AddObserver(new_observer);
+  observer_->AddObserver(newObserver);
   EXPECT_EQ(observer_->GetObserverList().size(), 1);
 }
 
 TEST_F(ObserverTest, RemoveObserverTest) {
   EXPECT_EQ(observer_->GetObserverList().size(), 0);
-  observer_->AddObserver(new_observer);
+  observer_->AddObserver(newObserver);
   EXPECT_EQ(observer_->GetObserverList().size(), 1);
-  observer_->RemoveObserver(new_observer);
+  observer_->RemoveObserver(newObserver);
   EXPECT_EQ(observer_->GetObserverList().size(), 0);
 }
 
@@ -66,13 +65,13 @@ TEST_F(ObserverTest, MovingTest) {
 
   observer_->Moving(entity_, route);
   picojson::object obj = observer_->GetJsonObject();
-  picojson::object route_obj = JsonHelper::CreateJsonObject();
-  JsonHelper::AddStdVectorVectorFloatToJsonObject(route_obj, "path", route);
+  picojson::object routeObj = JsonHelper::CreateJsonObject();
+  JsonHelper::AddStdVectorVectorFloatToJsonObject(routeObj, "path", route);
 
   EXPECT_EQ(JsonHelper::ContainsKey(obj, "value"), true);
   EXPECT_EQ(JsonHelper::GetString(obj, "value"), "moving");
   EXPECT_EQ(JsonHelper::ContainsKey(obj, "path"), true);
-  EXPECT_EQ(JsonHelper::GetValue(obj, "path").serialize(), JsonHelper::GetValue(route_obj, "path").serialize());
+  EXPECT_EQ(JsonHelper::GetValue(obj, "path").serialize(), JsonHelper::GetValue(routeObj, "path").serialize());
 }
 
 TEST_F(ObserverTest, EnRouteTest) {
@@ -100,13 +99,33 @@ TEST_F(ObserverTest, IdleTest) {
 }
 
 TEST_F(ObserverTest, ColorChangeTest) {
-  observer_->ColorChange(entity_);
+  //setting up package
+  picojson::object obj1 = JsonHelper::CreateJsonObject();
+  JsonHelper::AddStringToJsonObject(obj1, "type", "package");
+  std::vector<float> position_to_add;
+  position_to_add.push_back(498.292);
+  position_to_add.push_back(253.883);
+  position_to_add.push_back(-228.623);
+  JsonHelper::AddStdFloatVectorToJsonObject(obj1, "position", position_to_add);
+  std::vector<float> direction_to_add;
+  direction_to_add.push_back(1);
+  direction_to_add.push_back(0);
+  direction_to_add.push_back(0);
+  JsonHelper::AddStdFloatVectorToJsonObject(obj1, "direction", direction_to_add);
+  JsonHelper::AddFloatToJsonObject(obj1, "radius", 1.0);
+  float weight = 5.0; 
+  Package* package = new Package(position_to_add, direction_to_add, weight, nullptr, obj1);
+
+  
+
+  observer_->ColorChange(((IEntity*)package));
   picojson::object obj = observer_->GetJsonObject();
 
   EXPECT_EQ(JsonHelper::ContainsKey(obj, "value"), true);
   EXPECT_EQ(JsonHelper::GetString(obj, "value"), "updateDetails");
   EXPECT_EQ(JsonHelper::ContainsKey(obj, "details"), true);
-  EXPECT_EQ(JsonHelper::GetObject(obj, "details"), ((EntityBase*) entity_)->GetDetails());
+  EXPECT_EQ(JsonHelper::GetValue(obj, "details").serialize(), picojson::value(((EntityBase*) package)->GetDetails()).serialize());
+
 }
 
 }  // namespace csci3081

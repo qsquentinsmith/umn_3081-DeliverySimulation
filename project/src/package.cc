@@ -38,7 +38,7 @@ namespace csci3081 {
     position = pos; 
   }
 
-  void Package::SetDirection(vector<float> dir) {
+  void Package::SetDirection(std::vector<float> dir) {
     direction = dir; 
   }
 

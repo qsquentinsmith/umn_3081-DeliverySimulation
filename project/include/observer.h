@@ -113,7 +113,7 @@ namespace csci3081 {
 		private:
             std::vector<IEntityObserver*> observers_;
             //used for testing
-            picojson::object test_obj;
+            picojson::object testObj;
 	}; //class
 
 } //namespace 

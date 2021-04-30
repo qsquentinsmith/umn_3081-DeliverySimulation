@@ -3,8 +3,8 @@
 #include "../include/delivery_simulation.h"
 #include <EntityProject/entity.h>
 #include "json_helper.h"
+#include "customer.h"
 #include "package.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -13,81 +13,183 @@ namespace csci3081 {
 
   class PackageTest : public ::testing::Test {
    protected:
-    virtual void SetUp() {}
-    virtual void TearDown() {}
+    picojson::object obj;
+    picojson::object CusObj;
+    Customer* customer;
+    Package* package;
+
+    virtual void SetUp() {
+      //setting up customer
+      CusObj = JsonHelper::CreateJsonObject();
+      JsonHelper::AddStringToJsonObject(CusObj, "type", "customer");
+
+      //setting up package
+      obj = JsonHelper::CreateJsonObject();
+      JsonHelper::AddStringToJsonObject(obj, "type", "package");
+      std::vector<float> positionToAdd;
+      positionToAdd.push_back(498.292);
+      positionToAdd.push_back(253.883);
+      positionToAdd.push_back(-228.623);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
+    
+      std::vector<float> directionToAdd;
+      directionToAdd.push_back(1);
+      directionToAdd.push_back(0);
+      directionToAdd.push_back(0);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
+      JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
+      float weight = 5.0; 
+
+      JsonHelper::AddFloatToJsonObject(CusObj, "radius", 1.0);
+      customer = new Customer(position_to_add, CusObj); 
+      package = new Package(positionToAdd, directionToAdd, weight, customer, obj); 
+
+    }
+    virtual void TearDown() {
+      delete package;
+      delete customer;
+      
+    }
   };
 
   /*******************************************************************************
    * Test Cases
    ******************************************************************************/
-  //testing package constructor
+  
   TEST_F(PackageTest, PackageConstructor) {
-    //setting up package
-    picojson::object obj = JsonHelper::CreateJsonObject();
-    JsonHelper::AddStringToJsonObject(obj, "type", "package");
-    std::vector<float> position_to_add;
-    position_to_add.push_back(498.292);
-    position_to_add.push_back(253.883);
-    position_to_add.push_back(-228.623);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-    std::vector<float> direction_to_add;
-    direction_to_add.push_back(1);
-    direction_to_add.push_back(0);
-    direction_to_add.push_back(0);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
-    JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-
-    Customer* customer = nullptr; 
-    float weight = 5.0; 
-
-    Package package = Package(position_to_add, direction_to_add, weight, customer, obj); 
-
-    //testing position, direction, and weight set in constructor
-    ASSERT_FLOAT_EQ(package.GetPosition()[0], 498.292);
-    ASSERT_FLOAT_EQ(package.GetPosition()[1], 253.883);
-    ASSERT_FLOAT_EQ(package.GetPosition()[2], -228.623);
-    ASSERT_FLOAT_EQ(package.GetDirection()[0], 1.0);
-    ASSERT_FLOAT_EQ(package.GetDirection()[1], 0.0);
-    ASSERT_FLOAT_EQ(package.GetDirection()[2], 0.0);
-    ASSERT_FLOAT_EQ(package.GetWeight(), 5.0); 
-
-    // Checks that when GetDetails() is called, the entity returns 
-    //  the picojson object that was used to initialize it
-    ASSERT_EQ(picojson::value(package.GetDetails()).serialize(), picojson::value(obj).serialize());
+    /*** package(): Constructor ***/
+    ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
   }
 
+
+  TEST_F(PackageTest, DynamicTest) {
+    /*** SetDynamic() ***/
+    package->SetDynamic(true);
+    ASSERT_EQ(package->IsDynamic(), true) << "isdynamic";
+    package->SetDynamic(false);
+    ASSERT_EQ(package->IsDynamic(), false) << "isdynamic";
+  }
+
+
+  TEST_F(PackageTest, GetPositionTest) {
+    /*** GetPosition() ***/
+    ASSERT_FLOAT_EQ(package->GetPosition()[0], 498.292);
+    ASSERT_FLOAT_EQ(package->GetPosition()[1], 253.883);
+    ASSERT_FLOAT_EQ(package->GetPosition()[2], -228.623);
+  }
+
+
+  TEST_F(PackageTest, GetDirectionTest) {
+    /*** GetDirection() ***/
+    ASSERT_FLOAT_EQ(package->GetDirection()[0], 1.0);
+    ASSERT_FLOAT_EQ(package->GetDirection()[1], 0.0);
+    ASSERT_FLOAT_EQ(package->GetDirection()[2], 0.0);
+  }
+
+
+  TEST_F(PackageTest, GetWeightTest) {
+    /*** GetWeight() ***/
+    ASSERT_FLOAT_EQ(package->GetWeight(), 5.0); 
+  }
+
+
+  TEST_F(PackageTest, GetCustomerTest) {
+    /*** GetCustomer() ***/
+    ASSERT_EQ(package->GetCustomer(), customer);
+
+  }
+
+
   TEST_F(PackageTest, GetCustomerPositionTest) {
-    picojson::object obj = JsonHelper::CreateJsonObject();
-    JsonHelper::AddStringToJsonObject(obj, "type", "package");
-    std::vector<float> position_to_add;
-    position_to_add.push_back(498.292);
-    position_to_add.push_back(253.883);
-    position_to_add.push_back(-228.623);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-    std::vector<float> direction_to_add;
-    direction_to_add.push_back(1);
-    direction_to_add.push_back(0);
-    direction_to_add.push_back(0);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
-    JsonHelper::AddFloatToJsonObject(obj, "radius", 2.0);
+    /*** GetCustomerPosition() ***/
+    ASSERT_FLOAT_EQ(package->GetCustomerPosition()[0], 498.292);
+    ASSERT_FLOAT_EQ(package->GetCustomerPosition()[1], 253.883);
+    ASSERT_FLOAT_EQ(package->GetCustomerPosition()[2], -228.623);
+  }
 
-    picojson::object cusObj = JsonHelper::CreateJsonObject();
-    JsonHelper::AddStringToJsonObject(cusObj, "type", "customer");
-    std::vector<float> cus_position_to_add;
-    cus_position_to_add.push_back(46.78);
-    cus_position_to_add.push_back(53.159);
-    cus_position_to_add.push_back(-384.23);
-    JsonHelper::AddStdFloatVectorToJsonObject(cusObj, "position", cus_position_to_add);
-    JsonHelper::AddFloatToJsonObject(cusObj, "radius", 1.0);
 
-    Customer customer = Customer(cus_position_to_add, cusObj);  
-    float weight = 5.0; 
+  TEST_F(PackageTest, SetPositionTest) {
+    /*** SetPosition(), GetPosition() ***/
+    std::vector<float> newPos;
+    newPos.push_back(0.0);
+    newPos.push_back(0.0);
+    newPos.push_back(0.0);
+    package->SetPosition(newPos);
+    ASSERT_FLOAT_EQ(package->GetPosition()[0], 0.0);
+    ASSERT_FLOAT_EQ(package->GetPosition()[1], 0.0);
+    ASSERT_FLOAT_EQ(package->GetPosition()[2], 0.0);
+  }
 
-    Package package = Package(position_to_add, direction_to_add, weight, &customer, obj); 
 
-    // ASSERT_FLOAT_EQ(package.GetCustomerPosition().at(0),(float) 46.78);
-    // ASSERT_FLOAT_EQ(package.GetCustomerPosition().at(1), (float) 53.159);
-    // ASSERT_FLOAT_EQ(package.GetCustomerPosition().at(2), (float) -384.23);
+  TEST_F(PackageTest, SetDirectionTest) {
+    /*** SetDirection(), GetDirection() ***/
+    std::vector<float> newDir;
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    package->SetDirection(newDir);
+    ASSERT_FLOAT_EQ(package->GetDirection()[0], 1.0);
+    ASSERT_FLOAT_EQ(package->GetDirection()[1], 1.0);
+    ASSERT_FLOAT_EQ(package->GetDirection()[2], 1.0);
+  }
+
+
+  TEST_F(PackageTest, SetCustomerTest) {
+    std::vector<float> newDir;
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    package->SetDirection(newDir);
+
+    /*** SetCustomer(), GetCustomerPosition() ***/
+    Customer* customer2;
+    customer2 = new Customer(newDir, CusObj);
+    package->SetCustomer(customer2);
+    ASSERT_FLOAT_EQ(package->GetCustomerPosition()[0], 1.0);
+    ASSERT_FLOAT_EQ(package->GetCustomerPosition()[1], 1.0);
+    ASSERT_FLOAT_EQ(package->GetCustomerPosition()[2], 1.0);
+
+    /*** GetCustomer() ***/
+    ASSERT_EQ(package->GetCustomer(), customer2);
+  }
+
+
+  TEST_F(PackageTest, PackageIDTest) {
+    ((EntityBase*)package)-> SetId(30);
+    ASSERT_EQ(((EntityBase*)package)-> GetId(), 30);
+    ((EntityBase*)package)-> SetId(40);
+    ASSERT_EQ(((EntityBase*)package)-> GetId(), 40);
+  }
+
+
+  TEST_F(PackageTest, PackageDetailsTest) {
+    ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+  }
+
+
+  TEST_F(PackageTest, PackageRadiusTest) {
+    ASSERT_EQ(package->GetRadius(), 1.0);
+  }
+
+
+  TEST_F(PackageTest, PackageNameTest) {
+    ASSERT_EQ(package->GetName(), "");
+  }
+
+
+  TEST_F(PackageTest, PackageColorTest) {
+    package->SetColor("0xF7DC6F");
+    ASSERT_NE(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+
+    obj["color"] = picojson::value("0xF7DC6F");
+    ASSERT_EQ(picojson::value(package->GetDetails()).serialize(), picojson::value(obj).serialize());
+  }
+
+
+  TEST_F(PackageTest, PackageVersionTest) {
+    package->SetVersion(1);
+    ASSERT_EQ(package->GetVersion(), 1) << "version";
+
   }
 
   

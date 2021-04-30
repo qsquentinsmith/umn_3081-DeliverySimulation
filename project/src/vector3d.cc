@@ -17,61 +17,61 @@ namespace csci3081 {
   //returns current vector + input vector (right hand side)
   Vector3D Vector3D::operator+(Vector3D rhsVec) {
 
-    float new_x = this->xPos + rhsVec.GetXPos(); 
-    float new_y = this->yPos + rhsVec.GetYPos(); 
-    float new_z = this->zPos + rhsVec.GetZPos();
+    float newX = this->xPos + rhsVec.GetXPos(); 
+    float newY = this->yPos + rhsVec.GetYPos(); 
+    float newZ = this->zPos + rhsVec.GetZPos();
 
-    std::vector<float> new_vec; 
-    new_vec.push_back(new_x);
-    new_vec.push_back(new_y);
-    new_vec.push_back(new_z);
+    std::vector<float> newVec; 
+    newVec.push_back(newX);
+    newVec.push_back(newY);
+    newVec.push_back(newZ);
 
-    return Vector3D(new_vec); 
+    return Vector3D(newVec); 
   }
 
   //returns current vector - input vector (right hand side)
   Vector3D Vector3D::operator-(Vector3D rhsVec) {
 
-    float new_x = this->xPos - rhsVec.GetXPos(); 
-    float new_y = this->yPos - rhsVec.GetYPos(); 
-    float new_z = this->zPos - rhsVec.GetZPos();
+    float newX = this->xPos - rhsVec.GetXPos(); 
+    float newY = this->yPos - rhsVec.GetYPos(); 
+    float newZ = this->zPos - rhsVec.GetZPos();
 
-    std::vector<float> new_vec; 
-    new_vec.push_back(new_x);
-    new_vec.push_back(new_y);
-    new_vec.push_back(new_z);
+    std::vector<float> newVec; 
+    newVec.push_back(newX);
+    newVec.push_back(newY);
+    newVec.push_back(newZ);
 
-    return Vector3D(new_vec); 
+    return Vector3D(newVec); 
   }
 
   //returns current vector * num (multiplies vector by scalar)
   Vector3D Vector3D::operator*(float num) {
 
-    float new_x = num * this->xPos; 
-    float new_y = num * this->yPos; 
-    float new_z = num * this->zPos;
+    float newX = num * this->xPos; 
+    float newY = num * this->yPos; 
+    float newZ = num * this->zPos;
 
-    std::vector<float> new_vec; 
-    new_vec.push_back(new_x);
-    new_vec.push_back(new_y);
-    new_vec.push_back(new_z);
+    std::vector<float> newVec; 
+    newVec.push_back(newX);
+    newVec.push_back(newY);
+    newVec.push_back(newZ);
 
-    return Vector3D(new_vec);
+    return Vector3D(newVec);
   }
 
   //returns the normalized version of the current vector 
   Vector3D Vector3D::Normalize() {
 
-    float x_component = this->xPos / this->Magnitude();
-    float y_component = this->yPos / this->Magnitude(); 
-    float z_component = this->zPos / this->Magnitude();
+    float xComponent = this->xPos / this->Magnitude();
+    float yComponent = this->yPos / this->Magnitude(); 
+    float zComponent = this->zPos / this->Magnitude();
 
-    std::vector<float> new_vec; 
-    new_vec.push_back(x_component);
-    new_vec.push_back(y_component);
-    new_vec.push_back(z_component);
+    std::vector<float> newVec; 
+    newVec.push_back(xComponent);
+    newVec.push_back(yComponent);
+    newVec.push_back(zComponent);
 
-    return Vector3D(new_vec); 
+    return Vector3D(newVec); 
   }
 
 }
