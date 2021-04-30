@@ -201,6 +201,12 @@ namespace csci3081 {
       */
       virtual void SetStrategy() = 0; 
 
+      /**
+      * @brief Sets whether the carrier is moving or not  
+      * 
+      * @param val: true or false depending on whether the carrier should be moving   
+      *
+      */
       void SetDynamic(bool val); 
 
     protected:

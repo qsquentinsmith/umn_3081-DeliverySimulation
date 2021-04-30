@@ -7,7 +7,6 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "package_decorator.h"
  #include "light_weight.h"
  #include "middle_weight.h"
  #include "heavy_weight.h"
@@ -18,15 +17,17 @@ namespace csci3081 {
  * Class Definition
  ******************************************************************************/
 /**
- * @brief The Decorator Factory is a simple factory which builds and uses decorated packages 
+ * @brief The Decorator Factory is a simple factory which creates the decorated packages 
  * 
  */ 
   class DecoratorFactory {
    public:
       /**
-	* @brief Creates a decorated package and calls its respective SetDynamic method
+	* @brief Creates a decorated package depending on the weight of the given package
 	* 
 	* @param package: a Package pointer with weight information 
+      *
+      * @return the decorated package pointer casted as an EntityBase* 
 	*/
       EntityBase* GetDecoratedPackage(Package* package);
   }; 

@@ -3,18 +3,12 @@
 namespace csci3081 {
 
   Package::Package(std::vector<float> pos, std::vector<float> dir, float wt, Customer* cus, const picojson::object& details) {
-    // The following line saves the json object in the details_ member variable
-    // from the EntityBase class, in order to return it later in GetDetails()
     details_ = details;
     position = pos; 
     direction = dir; 
     radius = (float) JsonHelper::GetDouble(details_, "radius");
     weight = wt;
     customer = cus; 
-  }
-
-  void Package::SetDynamic(bool val) {
-    dynamic = val; 
   }
 
   const std::vector<float>& Package::GetPosition() const {
@@ -50,6 +44,10 @@ namespace csci3081 {
 
   void Package::SetCustomer(Customer* cus) {
     customer = cus; 
+  }
+
+  void Package::SetDynamic(bool val) {
+    dynamic = val; 
   }
 
 }

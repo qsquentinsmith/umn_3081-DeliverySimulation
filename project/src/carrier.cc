@@ -1,10 +1,6 @@
 #include "carrier.h"
 
 namespace csci3081 {
-  void Carrier::SetDynamic(bool val) {
-    dynamic = val; 
-  }
-
   const std::vector<float>& Carrier::GetPosition() const {
     return position; 
   }
@@ -148,6 +144,10 @@ void Carrier::SetVersion(int ver) {
 
 std::string Carrier::GetPath() {
   return path; 
+}
+
+void Carrier::SetDynamic(bool val) {
+  dynamic = val; 
 }
 
 }//namespace 
