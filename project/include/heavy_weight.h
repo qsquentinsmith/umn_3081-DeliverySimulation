@@ -19,7 +19,7 @@ namespace csci3081 {
  */
 	class HeavyWeight : public PackageDecorator  {
 		public:
-			HeavyWeight(Package* package) : PackageDecorator(package) {}
+			HeavyWeight(EntityBase* package) : PackageDecorator(package) {}
 
 			void SetDynamic(bool val);
 

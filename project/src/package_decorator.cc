@@ -1,7 +1,7 @@
 #include "package_decorator.h"
 
 namespace csci3081 {
-    PackageDecorator::PackageDecorator(Package* package) {
+    PackageDecorator::PackageDecorator(EntityBase* package) {
         package_ = package; 
     }
 

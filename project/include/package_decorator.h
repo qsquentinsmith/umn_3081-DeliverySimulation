@@ -22,7 +22,7 @@ namespace csci3081 {
  */
 	class PackageDecorator : public EntityBase {
 		public:
-            PackageDecorator(Package* package);
+            PackageDecorator(EntityBase* package);
 
 			const vector<float>& GetPosition() const; 
 
@@ -31,7 +31,7 @@ namespace csci3081 {
 			void SetDynamic(bool val);
 
         protected: 
-            Package* package_; 
+            EntityBase* package_; 
 	};
 }  // namespace csci3081
 

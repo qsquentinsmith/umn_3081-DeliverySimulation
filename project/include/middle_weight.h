@@ -19,7 +19,7 @@ namespace csci3081 {
  */
 	class MiddleWeight : public PackageDecorator {
 		public:
-			MiddleWeight(Package* package) : PackageDecorator(package) {}
+			MiddleWeight(EntityBase* package) : PackageDecorator(package) {}
 
 			void SetDynamic(bool val);
 
