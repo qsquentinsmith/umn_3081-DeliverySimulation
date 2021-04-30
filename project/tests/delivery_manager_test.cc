@@ -39,8 +39,7 @@ namespace csci3081 {
     drone = new Drone(positionToAdd, directionToAdd, obj); 
     drone2 = new Drone(positionToAdd, directionToAdd, obj);
 
-    
-
+  
     //package setup 
     obj1 = JsonHelper::CreateJsonObject();
     JsonHelper::AddStringToJsonObject(obj1, "type", "package");
@@ -50,7 +49,7 @@ namespace csci3081 {
     JsonHelper::AddStdFloatVectorToJsonObject(obj1, "direction", directionToAdd);
     JsonHelper::AddFloatToJsonObject(obj1, "speed", 30.0);
     JsonHelper::AddFloatToJsonObject(obj1, "radius", 1.0);
-
+    
     Customer* customer = nullptr; 
     float weight = 5.0; 
 
@@ -68,25 +67,69 @@ namespace csci3081 {
   /*******************************************************************************
    * Test Cases
    ******************************************************************************/
-  //Testing drone constructor
-  TEST_F(DeliveryManagerTest, FunctionTests) {
+  
+  TEST_F(DeliveryManagerTest, ConstuctorTest) {
     Observer* observer_ = new Observer();
-	DeliveryManager* deliveryManager = new DeliveryManager(observer_);
+	  DeliveryManager* deliveryManager = new DeliveryManager(observer_);
 
-    
-    deliveryManager->AddWaitingCarrier((IEntity*) drone);
-    deliveryManager->AddWaitingCarrier((IEntity*) drone2);
-    ASSERT_NE(deliveryManager->RemoveWaitingCarrier(), nullptr) << "addwaitingcarriers";
-
-    
-    deliveryManager->AddWaitingPackage((IEntity*) package);
-    deliveryManager->AddWaitingPackage((IEntity*) package2);
-    ASSERT_NE(deliveryManager->RemoveWaitingPackage(), nullptr) << "addwaitingpackage";
-
-    ASSERT_NE(deliveryManager->GetFirstCarrierAvailable(), nullptr);
-    
+    /*** Constructor **/
+    ASSERT_NE(observer_, nullptr);
+    ASSERT_NE(deliveryManager, nullptr);
+   
   }
 
+
+   TEST_F(DeliveryManagerTest, AddWaitingCarrierTest) {
+    Observer* observer_ = new Observer();
+	  DeliveryManager* deliveryManager = new DeliveryManager(observer_);
+
+    /*** AddWaitingCarrier(), RemoveWaitingCarrier() ***/
+    deliveryManager->AddWaitingCarrier((IEntity*) drone);
+    deliveryManager->AddWaitingCarrier((IEntity*) drone2);
+    ASSERT_EQ(deliveryManager->RemoveWaitingCarrier(), drone);
+
+  }
+
+
+  TEST_F(DeliveryManagerTest, RemoveWaitingCarrierTest) {
+    Observer* observer_ = new Observer();
+	  DeliveryManager* deliveryManager = new DeliveryManager(observer_);
+
+    /*** AddWaitingCarrier(), RemoveWaitingCarrier() ***/
+    deliveryManager->AddWaitingCarrier((IEntity*) drone);
+    deliveryManager->AddWaitingCarrier((IEntity*) drone2);
+    ASSERT_EQ(deliveryManager->RemoveWaitingCarrier(), drone);
+
+    /*** AddWaitingPackage(), RemoveWaitingPackage() ***/
+    deliveryManager->AddWaitingPackage((IEntity*) package);
+    deliveryManager->AddWaitingPackage((IEntity*) package2);
+
+    ASSERT_EQ(deliveryManager->RemoveWaitingPackage(), package);
+  }
+
+
+  TEST_F(DeliveryManagerTest, GetFirstCarrierAvailableTest) {
+    Observer* observer_ = new Observer();
+	  DeliveryManager* deliveryManager = new DeliveryManager(observer_);
+
+    /*** AddWaitingCarrier(), RemoveWaitingCarrier() ***/
+    deliveryManager->AddWaitingCarrier((IEntity*) drone);
+    deliveryManager->AddWaitingCarrier((IEntity*) drone2);
+ 
+    /*** AddWaitingPackage(), RemoveWaitingPackage() ***/
+    deliveryManager->AddWaitingPackage((IEntity*) package);
+    deliveryManager->AddWaitingPackage((IEntity*) package2);
+  
+    /*** GetFirstCarrierAvailable() ***/
+    ASSERT_EQ(deliveryManager->GetFirstCarrierAvailable(), drone);
+  }
+
+
+    /** note: Public functions not included are 
+    - IsTypeCarrier() (private helper function), 
+    - AddCarrierAndPackage() (relies on many outside classes), 
+    - MoveCarriersAndPackages() (relies on many outside classes)
+    */
 
 
 

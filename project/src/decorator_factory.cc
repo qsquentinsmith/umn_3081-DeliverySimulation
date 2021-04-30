@@ -7,15 +7,15 @@ namespace csci3081 {
         EntityBase* decoratedPackage = (EntityBase*) package; //new PackageDecorator(package); 
         if (weight < 2.0) {
             decoratedPackage = new LightWeight(decoratedPackage); 
-            //((LightWeight*) decoratedPackage)->SetDynamic(true); 
+             
         }
         else if (weight >= 2.0 && weight < 4.0) {
             decoratedPackage = new MiddleWeight(decoratedPackage);
-            //((MiddleWeight*)decorated)->SetDynamic(true); 
+            
         }
         else if (weight >= 4.0) {
             decoratedPackage = new HeavyWeight(decoratedPackage);
-            //((HeavyWeight*)decorated)->SetDynamic(true); 
+            
         }
         return decoratedPackage; 
     }

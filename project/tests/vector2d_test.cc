@@ -3,6 +3,7 @@
 #include "../include/delivery_simulation.h"
 #include <EntityProject/entity.h>
 #include "json_helper.h"
+
 #include <iostream>
 
 namespace csci3081 {
@@ -20,17 +21,23 @@ namespace csci3081 {
    ******************************************************************************/
 
   TEST_F(Vector2DTest, Vector2DConstructor) {
+    
+    
     Vector2D vec1 = Vector2D(); 
 
     std::vector<float> position;
     position.push_back(1.0);
     position.push_back(0.0);
     position.push_back(3.0);
+
     Vector2D vec2 = Vector2D(position);
-    
+
+    /***Vector2D() ***/
     ASSERT_FLOAT_EQ(vec1.GetXPos(), 0.0);
     ASSERT_FLOAT_EQ(vec1.GetYPos(), 0.0);
     ASSERT_FLOAT_EQ(vec1.GetZPos(), 0.0);
+
+    /***Vector2D(position) ***/
     ASSERT_FLOAT_EQ(vec2.GetXPos(), 1.0);
     ASSERT_FLOAT_EQ(vec2.GetYPos(), 0.0);
     ASSERT_FLOAT_EQ(vec2.GetZPos(), 3.0);
@@ -45,6 +52,7 @@ namespace csci3081 {
     position.push_back(3.0);
     Vector2D vec2 = Vector2D(position);
 
+    /***Convert(), GetXPos(), GetYPos(), GetZPos() ***/
     std::vector<float> convertedVec1 = vec1.Convert(); 
     std::vector<float> convertedVec2 = vec2.Convert();
     
