@@ -125,7 +125,7 @@ namespace csci3081 {
   			std::vector<IEntityObserver*> observers_;
 			std::vector<Vector3D> route_;
 			Observer* observer_;
-			Decorator* decorator; 
+			DecoratorFactory* decoratorFactory; 
 	}; //class
 
 } //namespace 
