@@ -152,6 +152,9 @@ namespace csci3081 {
 
 				//reached package + rerouting to customer 
 				if (reachedDestination && package->IsDynamic() == false) {
+					//call decorator function 
+					decorator->GetDecoratedPackage(package); 
+					observer_->ColorChange((IEntity*)package);
 					package->SetDynamic(true);
 					vector<float> carrierPosition = carrier->GetPosition(); 
 					vector<float> customerPosition = package->GetCustomer()->GetPosition(); 
