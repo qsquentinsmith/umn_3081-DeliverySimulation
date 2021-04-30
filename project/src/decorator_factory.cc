@@ -2,20 +2,21 @@
 
 namespace csci3081 {
 
-    void DecoratorFactory::GetDecoratedPackage(Package* package) {
-        float weight = package->GetWeight(); 
-        PackageDecorator* decorated; 
+    EntityBase* DecoratorFactory::GetDecoratedPackage(EntityBase* package) {
+        float weight = ((Package*) package)->GetWeight(); 
+        EntityBase* decoratedPackage = new PackageDecorator(package); 
         if (weight < 2.0) {
-            decorated = new LightWeight(package); 
-            ((LightWeight*)decorated)->SetDynamic(true); 
+            decoratedPackage = new LightWeight(decoratedPackage); 
+            //((LightWeight*)decorated)->SetDynamic(true); 
         }
         else if (weight >= 2.0 && weight < 4.0) {
-            decorated = (MiddleWeight*) new MiddleWeight(package);
-            ((MiddleWeight*)decorated)->SetDynamic(true); 
+            decoratedPackage = new MiddleWeight(decoratedPackage);
+            //((MiddleWeight*)decorated)->SetDynamic(true); 
         }
         else if (weight >= 4.0) {
-            decorated = (HeavyWeight*) new HeavyWeight(package);
-            ((HeavyWeight*)decorated)->SetDynamic(true); 
+            decoratedPackage = new HeavyWeight(decoratedPackage);
+            //((HeavyWeight*)decorated)->SetDynamic(true); 
         }
+        return decoratedPackage; 
     }
 }
