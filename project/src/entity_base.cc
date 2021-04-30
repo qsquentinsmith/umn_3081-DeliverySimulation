@@ -43,9 +43,5 @@ namespace csci3081 {
   void EntityBase::SetVersion(int val) {
     version = val;
   }
-
-  // void EntityBase::SetDynamic(bool val) {
-  //   dynamic = val; 
-  // }
   
 }

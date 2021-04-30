@@ -26,20 +26,19 @@ namespace csci3081 {
     //setting up picojson::object for creat identity
     picojson::object obj = JsonHelper::CreateJsonObject();
     JsonHelper::AddStringToJsonObject(obj, "type", "customer");
-    std::vector<float> position_to_add;
-    position_to_add.push_back((float)-951.412);
-    position_to_add.push_back((float)254.665);
-    position_to_add.push_back((float)298.271);
+    std::vector<float> positionToAdd;
+    positionToAdd.push_back((float)-951.412);
+    positionToAdd.push_back((float)254.665);
+    positionToAdd.push_back((float)298.271);
     JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
 
-    Customer customer = Customer(position_to_add, obj);
+    Customer customer = Customer(positionToAdd, obj);
 
     CustomerFactory customerFactory;
     IEntity* customerFromFactory = customerFactory.CreateEntity(obj);
 
     //checks that factory didnt return a nullptr
-    //ASSERT_NE(customer, nullptr);
 
     // checking if values are set properly
     ASSERT_FLOAT_EQ(customer.GetPosition()[0], customerFromFactory->GetPosition().at(0));

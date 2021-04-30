@@ -12,8 +12,8 @@ namespace csci3081 {
     path = "smart";
     
     if(JsonHelper::ContainsKey(this->GetDetails(), "battery_capacity")) {
-      double battery_capacity = (float) JsonHelper::GetDouble(this->GetDetails(), "battery_capacity");
-      battery_ = new Battery(battery_capacity);
+      double batteryCapacity = (float) JsonHelper::GetDouble(this->GetDetails(), "battery_capacity");
+      battery_ = new Battery(batteryCapacity);
     }
     else {
       battery_ = new Battery();

@@ -4,7 +4,6 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 #include "customer.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -26,14 +25,14 @@ namespace csci3081 {
     //setting up customer
     picojson::object obj = JsonHelper::CreateJsonObject();
     JsonHelper::AddStringToJsonObject(obj, "type", "customer");
-    std::vector<float> position_to_add;
-    position_to_add.push_back(498.292);
-    position_to_add.push_back(253.883);
-    position_to_add.push_back(-228.623);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
+    std::vector<float> positionToAdd;
+    positionToAdd.push_back(498.292);
+    positionToAdd.push_back(253.883);
+    positionToAdd.push_back(-228.623);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
     JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
 
-    Customer customer = Customer(position_to_add, obj); 
+    Customer customer = Customer(positionToAdd, obj); 
     
     //testing position and direction set in constructor
     ASSERT_FLOAT_EQ(customer.GetPosition()[0], 498.292);

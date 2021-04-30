@@ -54,7 +54,7 @@ void Observer::ColorChange(IEntity* package) {
 
 void Observer::Notify(picojson::object jsonObj, IEntity* entityObj) {
 	//for testing
-	test_obj = jsonObj;
+	testObj = jsonObj;
 
 	for (int i = 0; i < observers_.size(); i++) {
 		observers_.at(i)->OnEvent(picojson::value(jsonObj), *entityObj);
@@ -66,7 +66,7 @@ std::vector<IEntityObserver*> Observer::GetObserverList() {
 }
 
 picojson::object Observer::GetJsonObject() {
-	return test_obj;
+	return testObj;
 }
 
 }
