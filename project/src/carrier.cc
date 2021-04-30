@@ -1,6 +1,9 @@
 #include "carrier.h"
 
 namespace csci3081 {
+  void Carrier::SetDynamic(bool val) {
+    dynamic = val; 
+  }
 
   const std::vector<float>& Carrier::GetPosition() const {
     return position; 

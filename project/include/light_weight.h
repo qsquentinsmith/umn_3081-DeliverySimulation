@@ -19,7 +19,7 @@ namespace csci3081 {
  */
 	class LightWeight : public PackageDecorator  {
 		public:
-			LightWeight(Package* package) : PackageDecorator(package) {}
+			LightWeight(EntityBase* package) : PackageDecorator(package) {}
 
 			void SetDynamic(bool val);
 

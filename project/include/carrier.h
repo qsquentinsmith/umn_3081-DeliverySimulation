@@ -196,6 +196,8 @@ namespace csci3081 {
       */
       virtual void SetStrategy() = 0; 
 
+      void SetDynamic(bool val); 
+
     protected:
       Battery* battery_ = nullptr; 
       const IGraph* graph_;

@@ -13,6 +13,10 @@ namespace csci3081 {
     customer = cus; 
   }
 
+  void Package::SetDynamic(bool val) {
+    dynamic = val; 
+  }
+
   const std::vector<float>& Package::GetPosition() const {
     return position; 
   }
@@ -46,10 +50,6 @@ namespace csci3081 {
 
   void Package::SetCustomer(Customer* cus) {
     customer = cus; 
-  }
-
-  void Package::Decorate() {
-    //NO COLOR 
   }
 
 }
