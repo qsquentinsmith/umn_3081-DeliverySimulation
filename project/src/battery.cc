@@ -5,12 +5,12 @@ namespace csci3081 {
    Battery::Battery(float maxCharge) {
 
     if (maxCharge < 0){
-      charge_remaining_ = 0;
-      max_charge_ = 0;
+      chargeRemaining = 0;
+      this->maxCharge = 0;
     }
     else{
-      charge_remaining_ = maxCharge; 
-      max_charge_ = maxCharge;
+      chargeRemaining = maxCharge; 
+      this->maxCharge = maxCharge;
     }
   }
 
