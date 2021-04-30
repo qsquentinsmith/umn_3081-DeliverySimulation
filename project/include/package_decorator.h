@@ -23,7 +23,7 @@ namespace csci3081 {
 			/**
 			* @brief Base constructor for all package decorations 
 			* 
-			* @param package: a Package pointer with weight information 
+			* @param package: a package pointer (concrete or decorated) using type EntityBase* 
 			*
 			*/
             PackageDecorator(EntityBase* package);
