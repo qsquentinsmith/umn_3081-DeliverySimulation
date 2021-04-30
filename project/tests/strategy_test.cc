@@ -8,7 +8,6 @@
 #include "smart_path.h"
 #include "parabolic.h"
 #include "drone.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -71,7 +70,6 @@ namespace csci3081 {
 
 
 TEST_F(StrategyTest, Beeline) {
-    
     IStrategy* strategy = new Beeline(); 
     
     /*** GetRoute(): for beeline ***/
@@ -98,6 +96,6 @@ TEST_F(StrategyTest, Beeline) {
 
 /***** Smart Test for drone and robot are not tested to reliance on IGraph class ***/
 
- 
+
 
 }  // namespace csci3081

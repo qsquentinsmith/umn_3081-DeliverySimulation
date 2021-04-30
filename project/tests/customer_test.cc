@@ -4,7 +4,6 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 #include "customer.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -20,13 +19,13 @@ namespace csci3081 {
 
       obj = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj, "type", "customer");
-      std::vector<float> position_to_add;
-      position_to_add.push_back(498.292);
-      position_to_add.push_back(253.883);
-      position_to_add.push_back(-228.623);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
+      std::vector<float> positionToAdd;
+      positionToAdd.push_back(498.292);
+      positionToAdd.push_back(253.883);
+      positionToAdd.push_back(-228.623);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
       JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-      customer = new Customer(position_to_add, obj); 
+      customer = new Customer(positionToAdd, obj); 
 
     }
     virtual void TearDown() {
@@ -50,7 +49,7 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(customer->GetDirection()[2], 0.0);
   }
 
-   TEST_F(CustomerTest, CustomerPositionTest) {
+  TEST_F(CustomerTest, CustomerPositionTest) {
     /*** GetPosition() ***/
     ASSERT_FLOAT_EQ(customer->GetPosition()[0], 498.292);
     ASSERT_FLOAT_EQ(customer->GetPosition()[1], 253.883);
@@ -79,11 +78,9 @@ namespace csci3081 {
 
   TEST_F(CustomerTest, CustomerColorTest) {
     customer->SetColor("0xF7DC6F");
-
     ASSERT_NE(picojson::value(customer->GetDetails()).serialize(), picojson::value(obj).serialize());
 
     obj["color"] = picojson::value("0xF7DC6F");
-
     ASSERT_EQ(picojson::value(customer->GetDetails()).serialize(), picojson::value(obj).serialize());
   }
 

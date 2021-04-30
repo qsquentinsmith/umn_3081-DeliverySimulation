@@ -4,7 +4,6 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 
-
 #include <iostream>
 
 namespace csci3081 {

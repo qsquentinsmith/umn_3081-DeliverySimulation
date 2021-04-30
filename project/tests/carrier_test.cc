@@ -3,8 +3,7 @@
 #include "../include/delivery_simulation.h"
 #include <EntityProject/entity.h>
 #include "json_helper.h"
-#include "entity_base.h"
-//#include "drone.h"
+
 
 #include <iostream>
 
@@ -17,11 +16,12 @@ namespace csci3081 {
     Drone* drone;
     picojson::object obj;
 
+
     Robot* robot;
     picojson::object obj_r;
     
-    std::vector<float> position_to_add;
-    std::vector<float> direction_to_add;
+    std::vector<float> positionToAdd;
+    std::vector<float> directionToAdd;
     
     virtual void SetUp() {
 
@@ -29,29 +29,29 @@ namespace csci3081 {
       obj = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj, "type", "drone");
       
-      position_to_add.push_back(498.292);
-      position_to_add.push_back(253.883);
-      position_to_add.push_back(-228.623);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
+      positionToAdd.push_back(498.292);
+      positionToAdd.push_back(253.883);
+      positionToAdd.push_back(-228.623);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
       
-      direction_to_add.push_back(1);
-      direction_to_add.push_back(0);
-      direction_to_add.push_back(0);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
+      directionToAdd.push_back(1);
+      directionToAdd.push_back(0);
+      directionToAdd.push_back(0);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
       JsonHelper::AddFloatToJsonObject(obj, "speed", 30.0);
       JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
       JsonHelper::AddStringToJsonObject(obj, "path", "smart");
-      drone = new Drone(position_to_add, direction_to_add, obj); 
+      drone = new Drone(positionToAdd, directionToAdd, obj); 
 
       //drone setup 
       obj_r = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj_r, "type", "robot");
-      JsonHelper::AddStdFloatVectorToJsonObject(obj_r, "position", position_to_add);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj_r, "direction", direction_to_add);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj_r, "position", positionToAdd);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj_r, "direction", directionToAdd);
       JsonHelper::AddFloatToJsonObject(obj_r, "speed", 30.0);
       JsonHelper::AddFloatToJsonObject(obj_r, "radius", 1.0);
       JsonHelper::AddStringToJsonObject(obj_r, "path", "smart");
-      robot = new Robot(position_to_add, direction_to_add, obj_r); 
+      robot = new Robot(positionToAdd, directionToAdd, obj_r); 
 
     }
     virtual void TearDown() {
@@ -75,7 +75,6 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(drone->GetDirection()[2], 0.0);
 
     ASSERT_EQ(picojson::value(drone->GetDetails()).serialize(), picojson::value(obj).serialize());
-
   }
 
 

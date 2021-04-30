@@ -5,7 +5,6 @@
 #include "json_helper.h"
 #include "customer.h"
 #include "package.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -27,22 +26,23 @@ namespace csci3081 {
       //setting up package
       obj = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj, "type", "package");
-      std::vector<float> position_to_add;
-      position_to_add.push_back(498.292);
-      position_to_add.push_back(253.883);
-      position_to_add.push_back(-228.623);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-      std::vector<float> direction_to_add;
-      direction_to_add.push_back(1);
-      direction_to_add.push_back(0);
-      direction_to_add.push_back(0);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
+      std::vector<float> positionToAdd;
+      positionToAdd.push_back(498.292);
+      positionToAdd.push_back(253.883);
+      positionToAdd.push_back(-228.623);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
+    
+      std::vector<float> directionToAdd;
+      directionToAdd.push_back(1);
+      directionToAdd.push_back(0);
+      directionToAdd.push_back(0);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
       JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
       float weight = 5.0; 
 
       JsonHelper::AddFloatToJsonObject(CusObj, "radius", 1.0);
       customer = new Customer(position_to_add, CusObj); 
-      package = new Package(position_to_add, direction_to_add, weight, customer, obj); 
+      package = new Package(positionToAdd, directionToAdd, weight, customer, obj); 
 
     }
     virtual void TearDown() {
@@ -96,6 +96,7 @@ namespace csci3081 {
   TEST_F(PackageTest, GetCustomerTest) {
     /*** GetCustomer() ***/
     ASSERT_EQ(package->GetCustomer(), customer);
+
   }
 
 
@@ -109,11 +110,11 @@ namespace csci3081 {
 
   TEST_F(PackageTest, SetPositionTest) {
     /*** SetPosition(), GetPosition() ***/
-    std::vector<float> new_pos_;
-    new_pos_.push_back(0.0);
-    new_pos_.push_back(0.0);
-    new_pos_.push_back(0.0);
-    package->SetPosition(new_pos_);
+    std::vector<float> newPos;
+    newPos.push_back(0.0);
+    newPos.push_back(0.0);
+    newPos.push_back(0.0);
+    package->SetPosition(newPos);
     ASSERT_FLOAT_EQ(package->GetPosition()[0], 0.0);
     ASSERT_FLOAT_EQ(package->GetPosition()[1], 0.0);
     ASSERT_FLOAT_EQ(package->GetPosition()[2], 0.0);
@@ -122,11 +123,11 @@ namespace csci3081 {
 
   TEST_F(PackageTest, SetDirectionTest) {
     /*** SetDirection(), GetDirection() ***/
-    std::vector<float> new_dir_;
-    new_dir_.push_back(1.0);
-    new_dir_.push_back(1.0);
-    new_dir_.push_back(1.0);
-    package->SetDirection(new_dir_);
+    std::vector<float> newDir;
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    package->SetDirection(newDir);
     ASSERT_FLOAT_EQ(package->GetDirection()[0], 1.0);
     ASSERT_FLOAT_EQ(package->GetDirection()[1], 1.0);
     ASSERT_FLOAT_EQ(package->GetDirection()[2], 1.0);
@@ -134,15 +135,15 @@ namespace csci3081 {
 
 
   TEST_F(PackageTest, SetCustomerTest) {
-    std::vector<float> new_dir_;
-    new_dir_.push_back(1.0);
-    new_dir_.push_back(1.0);
-    new_dir_.push_back(1.0);
-    package->SetDirection(new_dir_);
+    std::vector<float> newDir;
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    newDir.push_back(1.0);
+    package->SetDirection(newDir);
 
     /*** SetCustomer(), GetCustomerPosition() ***/
     Customer* customer2;
-    customer2 = new Customer(new_dir_, CusObj);
+    customer2 = new Customer(newDir, CusObj);
     package->SetCustomer(customer2);
     ASSERT_FLOAT_EQ(package->GetCustomerPosition()[0], 1.0);
     ASSERT_FLOAT_EQ(package->GetCustomerPosition()[1], 1.0);
@@ -188,6 +189,7 @@ namespace csci3081 {
   TEST_F(PackageTest, PackageVersionTest) {
     package->SetVersion(1);
     ASSERT_EQ(package->GetVersion(), 1) << "version";
+
   }
 
   

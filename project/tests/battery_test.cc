@@ -4,6 +4,7 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 
+
 #include <iostream>
 
 namespace csci3081 {
@@ -24,12 +25,12 @@ namespace csci3081 {
     Battery battery = Battery(); 
     ASSERT_EQ(battery.GetChargeRemaining(), 10000) << "Battery (), should be 10000"; 
 
-    Battery battery_init = Battery(5000);
-    ASSERT_EQ(battery_init.GetChargeRemaining(), 5000) << "Battery(5000), should be 5000"; 
-
-    /***** edge case initiation: intiate with negative number ***/
-    Battery battery_init_2 = Battery(-5000);
-    ASSERT_EQ(battery_init_2.GetChargeRemaining(), 0) << "Edge Case: Battery(-5000), should be 0"; 
+    Battery batteryInit = Battery(5000);
+    ASSERT_EQ(batteryInit.GetChargeRemaining(), 5000) << "Battery(5000), should be 5000"; 
+    
+     /***** edge case initiation: intiate with negative number ***/
+    Battery batteryInit2 = Battery(-5000);
+    ASSERT_EQ(batteryInit2.GetChargeRemaining(), 0) << "Edge Case: Battery(-5000), should be 0"; 
   }
 
 

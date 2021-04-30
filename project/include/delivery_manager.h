@@ -98,7 +98,6 @@ namespace csci3081 {
 			*
 			*/
 			void MoveCarriersAndPackages(float dt);
-
 			/**
 			* @brief Sets route for carrier   
 			* 
@@ -117,15 +116,59 @@ namespace csci3081 {
 
 		private:
             vector<string> carrierTypes; 
-            bool IsTypeCarrier(string carrier); //PRIVATE HELPER METHOD
+            
 			vector<IEntity*> carriers_; 
 			vector<IEntity*> packages_; 
-			vector<IEntity*> waiting_packages_;
-			vector<IEntity*> waiting_carriers_;
+			vector<IEntity*> waitingPackages;
+			vector<IEntity*> waitingCarriers;
   			std::vector<IEntityObserver*> observers_;
 			std::vector<Vector3D> route_;
 			Observer* observer_;
-			DecoratorFactory* decoratorFactory; 
+			DecoratorFactory* decoratorFactory;
+
+			/**
+			* @brief Checks if the string passed in is a type of carrier
+			* 
+			* @param carrier: string to be checked if it is a type of carrier
+			* 
+			*/
+			bool IsTypeCarrier(string carrier); //PRIVATE HELPER METHOD
+			/**
+			* @brief Handles Edge case when the package is in the same location of the Carrier in the scene
+			* 
+			* @param Carrier: pointer to the carrier being moved
+			* @param Package: pointer to the package being moved
+			* @param i: iterator for carriers and packages in scene
+			* 
+			*/
+			void PackageCarrierSameLocation(Carrier* carrier, Package* package, int i);
+			/**
+			* @brief initiates sequence of events when carrier battery dies
+			* 
+			* @param Carrier: pointer to the carrier being moved
+			* @param Package: pointer to the package being moved
+			* @param i: iterator for carriers and packages in scene
+			* 
+			*/
+			void DeadBattery(Carrier* carrier, Package* package, int i);
+			/**
+			* @brief Initiates sequence of events when Carrier arrives at Package
+			* 
+			* @param Carrier: pointer to the carrier being moved
+			* @param Package: pointer to the package being 
+			* @param i: iterator for carriers and packages in scene
+			* 
+			*/
+			void CarrierArrivedAtPackage(Carrier* carrier, Package* package, int i);
+			/**
+			* @brief Initiates sequence of events when Carrier Arives at Customer
+			* 
+			* @param Carrier: pointer to the carrier being moved
+			* @param Package: pointer to the package being 
+			* @param i: iterator for carriers and packages in scene
+			* 
+			*/
+			void CarrierArrivedAtCustomer(Carrier* carrier, Package* package, int i); 
 	}; //class
 
 } //namespace 

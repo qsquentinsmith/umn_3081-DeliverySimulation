@@ -43,6 +43,5 @@ namespace csci3081 {
   void EntityBase::SetVersion(int val) {
     version = val;
   }
-
   
 }

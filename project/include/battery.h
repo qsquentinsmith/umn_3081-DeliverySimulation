@@ -38,6 +38,7 @@ namespace csci3081 {
 		* @param maxCharge: float to initialize batteries max charge attribute.  
 		*/
 		Battery(float maxCharge);
+
 	    /**
 		* @brief Checks if the battery has charge  
 		*
@@ -62,10 +63,10 @@ namespace csci3081 {
 
 
     private:
-	    float max_charge_ = 10000;
-	    float charge_remaining_ = 10000;
-		bool dead_battery_ = false; 
+	    float maxCharge = 10000;
+	    float chargeRemaining = 10000;
+		bool deadBattery = false; 
   };
 
 }
-#endif  // DBATTERY_H_
+#endif  // BATTERY_H_

@@ -34,12 +34,16 @@ namespace csci3081 {
       /**
       * @brief Adds input vector to current vector    
       *
+      * @param rhsVec: Vector3D to add to left hand side vector
+      *
       * @return New Vector3D object 
       */
         Vector3D operator+(Vector3D rhsVec);
 
       /**
       * @brief Subtracts input vector from current vector    
+      *
+      * @param rhsVec: Vector3D to subtract from left hand side vector
       *
       * @return New Vector3D object 
       */
@@ -48,6 +52,8 @@ namespace csci3081 {
 
       /**
       * @brief Multiplies each component of the vector by the input number    
+      *
+      * @param num: number to multiply vector components by
       *
       * @return New Vector3D object 
       */

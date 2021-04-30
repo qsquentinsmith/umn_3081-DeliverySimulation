@@ -4,7 +4,6 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 #include "package_factory.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -20,19 +19,19 @@ namespace csci3081 {
       //setting up picojson::object for creat identity
       obj = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj, "type", "package");
-      std::vector<float> position_to_add;
-      position_to_add.push_back(-951.412);
-      position_to_add.push_back(254.665);
-      position_to_add.push_back(298.271);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-      std::vector<float> direction_to_add;
-      direction_to_add.push_back(1);
-      direction_to_add.push_back(0);
-      direction_to_add.push_back(0);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
+      std::vector<float> positionToAdd;
+      positionToAdd.push_back(-951.412);
+      positionToAdd.push_back(254.665);
+      positionToAdd.push_back(298.271);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
+      std::vector<float> directionToAdd;
+      directionToAdd.push_back(1);
+      directionToAdd.push_back(0);
+      directionToAdd.push_back(0);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
       JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
       JsonHelper::AddFloatToJsonObject(obj, "weight", 1.0);
-      package = new Package(position_to_add, direction_to_add, 5.0, nullptr, obj);
+      package = new Package(positionToAdd, directionToAdd, 5.0, nullptr, obj);
     }
     virtual void TearDown() {
       delete package;

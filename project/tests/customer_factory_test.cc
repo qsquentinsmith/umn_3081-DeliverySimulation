@@ -19,14 +19,14 @@ namespace csci3081 {
     virtual void SetUp() {
       obj = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj, "type", "customer");
-      std::vector<float> position_to_add;
-      position_to_add.push_back((float)-951.412);
-      position_to_add.push_back((float)254.665);
-      position_to_add.push_back((float)298.271);
+      std::vector<float> positionToAdd;
+      positionToAdd.push_back((float)-951.412);
+      positionToAdd.push_back((float)254.665);
+      positionToAdd.push_back((float)298.271);
       JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
 
-      customer = new Customer(position_to_add, obj);
+      customer = new Customer(positionToAdd, obj);
       
     }
     virtual void TearDown() {
@@ -50,7 +50,6 @@ namespace csci3081 {
     ASSERT_FLOAT_EQ(customer->GetPosition()[0], customerFromFactory->GetPosition().at(0));
     ASSERT_FLOAT_EQ(customer->GetPosition()[1], customerFromFactory->GetPosition().at(1));
     ASSERT_FLOAT_EQ(customer->GetPosition()[2], customerFromFactory->GetPosition().at(2));
-
   }
 
 }  // namespace csci3081
