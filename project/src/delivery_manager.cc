@@ -155,7 +155,7 @@ namespace csci3081 {
 					//call decorator function 
 					//decoratorFactory->GetDecoratedPackage(package);
 
-					EntityBase* decoratedPackage = decoratorFactory->GetDecoratedPackage(base_package);
+					EntityBase* decoratedPackage = decoratorFactory->GetDecoratedPackage(package);
 					decoratedPackage->SetDynamic(true); 
 
 					observer_->ColorChange((IEntity*)package);
