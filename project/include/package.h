@@ -109,7 +109,7 @@ namespace csci3081 {
       */
       Customer* GetCustomer(); 
 
-      void Decorate(); 
+      void SetDynamic(bool val); 
 
   private:
       std::vector<float> position; 

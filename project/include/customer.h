@@ -50,6 +50,9 @@ namespace csci3081 {
      */
       const std::vector<float>& GetDirection() const;
 
+      void SetDynamic(bool val) {}
+
+
 
     private:
       std::vector<float> position; 

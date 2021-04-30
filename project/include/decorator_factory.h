@@ -28,7 +28,7 @@ namespace csci3081 {
 	* 
 	* @param package: a Package pointer with weight information 
 	*/
-      void GetDecoratedPackage(Package* package);
+      EntityBase* GetDecoratedPackage(EntityBase* package);
   }; 
 
 };
