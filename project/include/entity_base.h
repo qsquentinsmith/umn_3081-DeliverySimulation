@@ -117,6 +117,7 @@ namespace csci3081 {
 		  	*/
 		  	void SetVersion(int val);
 
+			//VIRTUAL METHOD 
 		  	/**
 		  	* @brief Sets whether the entity is moving or not  
 		  	* 
@@ -125,7 +126,7 @@ namespace csci3081 {
 		  	* Used to change the state of the entity to moving or not moving 
 		  	* 
 		  	*/
-			void SetDynamic(bool val);
+			virtual void SetDynamic(bool val) = 0;
 
 			/**
 			* @brief gets the destination of an entity in the simulation
