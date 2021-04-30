@@ -4,7 +4,6 @@
 #include <EntityProject/entity.h>
 #include "json_helper.h"
 #include "robot_factory.h"
-
 #include <iostream>
 
 namespace csci3081 {
@@ -26,25 +25,23 @@ namespace csci3081 {
     //setting up picojson::object for creat identity
     picojson::object obj = JsonHelper::CreateJsonObject();
     JsonHelper::AddStringToJsonObject(obj, "type", "robot");
-    std::vector<float> position_to_add;
-    position_to_add.push_back(498.292);
-    position_to_add.push_back(253.883);
-    position_to_add.push_back(-228.623);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-    std::vector<float> direction_to_add;
-    direction_to_add.push_back(1);
-    direction_to_add.push_back(0);
-    direction_to_add.push_back(0);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
+    std::vector<float> positionToAdd;
+    positionToAdd.push_back(498.292);
+    positionToAdd.push_back(253.883);
+    positionToAdd.push_back(-228.623);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
+    std::vector<float> directionToAdd;
+    directionToAdd.push_back(1);
+    directionToAdd.push_back(0);
+    directionToAdd.push_back(0);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
     JsonHelper::AddFloatToJsonObject(obj, "speed", 30.0);
     JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-    Robot robot = Robot(position_to_add, direction_to_add, obj);
+    Robot robot = Robot(positionToAdd, directionToAdd, obj);
 
     RobotFactory robotFactory;
     IEntity* robotFromFactory = robotFactory.CreateEntity(obj);
 
-    //checks that factory didnt return a nullptr
-    //ASSERT_NE(robot, nullptr);
 
     // checking if values are set properly
     ASSERT_FLOAT_EQ(robot.GetPosition()[0], robotFromFactory->GetPosition().at(0));

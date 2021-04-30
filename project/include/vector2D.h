@@ -54,7 +54,12 @@ namespace csci3081 {
       */
         float GetZPos(); 
 
-        void SetYPos(float y) {yPos = y;}
+      /**
+      * @brief Sets the y component of the vector  
+      *
+      * @param y: float to set y component to 
+      */
+        void SetYPos(float y); 
 
       /**
       * @brief Converts Vector2D or Vector3D object to float of vectors    
@@ -66,6 +71,8 @@ namespace csci3081 {
       /**
       * @brief Adds input vector to current vector    
       *
+      * @param rhsVec: Vector2D to add to left hand side vector
+      *
       * @return New Vector2D object 
       */
         Vector2D operator+(Vector2D rhsVec);
@@ -73,12 +80,16 @@ namespace csci3081 {
       /**
       * @brief Subtracts input vector from current vector    
       *
+      * @param rhsVec: Vector2D to subtract from left hand side vector
+      *
       * @return New Vector2D object 
       */
         Vector2D operator-(Vector2D rhsVec);
 
       /**
       * @brief Multiplies each component of the vector by the input number    
+      *
+      * @param num: number to multiply vector components by
       *
       * @return New Vector2D object 
       */

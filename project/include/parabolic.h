@@ -16,7 +16,6 @@ namespace csci3081 {
  * Class Definition
  ******************************************************************************/
 
-  class Drone;
   /**
  * @brief The Parabolic class handles operations used when a drone uses the parabolic route  
  * 

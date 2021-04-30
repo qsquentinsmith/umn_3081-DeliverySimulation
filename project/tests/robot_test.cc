@@ -20,19 +20,19 @@ namespace csci3081 {
       //robot setup 
       obj = JsonHelper::CreateJsonObject();
       JsonHelper::AddStringToJsonObject(obj, "type", "robot");
-      std::vector<float> position_to_add;
-      position_to_add.push_back(498.292);
-      position_to_add.push_back(253.883);
-      position_to_add.push_back(-228.623);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-      std::vector<float> direction_to_add;
-      direction_to_add.push_back(1);
-      direction_to_add.push_back(0);
-      direction_to_add.push_back(0);
-      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
+      std::vector<float> positionToAdd;
+      positionToAdd.push_back(498.292);
+      positionToAdd.push_back(253.883);
+      positionToAdd.push_back(-228.623);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", positionToAdd);
+      std::vector<float> directionToAdd;
+      directionToAdd.push_back(1);
+      directionToAdd.push_back(0);
+      directionToAdd.push_back(0);
+      JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", directionToAdd);
       JsonHelper::AddFloatToJsonObject(obj, "speed", 30.0);
 JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-      robot = new Robot(position_to_add, direction_to_add, obj); 
+      robot = new Robot(positionToAdd, directionToAdd, obj); 
     }
     virtual void TearDown() {
       delete robot;

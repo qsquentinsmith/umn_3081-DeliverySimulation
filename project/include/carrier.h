@@ -123,13 +123,18 @@ namespace csci3081 {
       /**
       * @brief Computes the new direction the carrier must travel 
       * 
+      * @param nextPosition: represents the next position in the route
+      *
       * @return a Vector3D representing the current carrier direction 
       */
       Vector3D GetNewDirection(vector<float> nextPosition); 
 
       /**
       * @brief Computes the new position the carrier must go to 
-      * 
+      *
+      * @param dir: a Vector3D that represents the direction of the carrier
+      * @param dt: the time step for each update
+      *
       * @return a vector of floats representing the new position 
       */
       vector<float> GetNewPosition(Vector3D dir, float dt); 
