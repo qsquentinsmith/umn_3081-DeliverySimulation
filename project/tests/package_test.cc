@@ -41,7 +41,7 @@ namespace csci3081 {
       float weight = 5.0; 
 
       JsonHelper::AddFloatToJsonObject(CusObj, "radius", 1.0);
-      customer = new Customer(position_to_add, CusObj); 
+      customer = new Customer(positionToAdd, CusObj); 
       package = new Package(positionToAdd, directionToAdd, weight, customer, obj); 
 
     }
