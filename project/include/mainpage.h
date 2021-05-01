@@ -30,7 +30,7 @@ Welcome to our Autonomous Delivery Simulation!
  
 <u> Obtaining the Code: </u>
 
-You can clone the Delivery Simulation from this github repository: https://github.umn.edu/umn-csci-3081-s21/repo-iter2-01-29.git
+You can clone the Delivery Simulation from this github repository: https://github.umn.edu/umn-csci-3081-s21/repo-iter3-01-29.git
 
 <u> Compiling the Code: </u>
 
