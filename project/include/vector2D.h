@@ -27,7 +27,7 @@ namespace csci3081 {
       /**
       * @brief Constructs a Vector2D object  
       *
-      * @param: a vector of floats  
+      * @param pos: a vector of floats  
       * 
       * Separates vector to individual components
       */

@@ -28,7 +28,7 @@ namespace csci3081 {
       * @param dir: Package direction as a vector of floats
       * @param wt: Package weight
       * @param cus: Pointer for associated customer 
-      * @param details: picojson object containing package information 
+      * @param obj: picojson object containing package information 
       * 
       * Used in the package factory to create packages  
       * 

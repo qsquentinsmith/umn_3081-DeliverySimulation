@@ -68,7 +68,7 @@ namespace csci3081 {
 			* @brief Adds carriers to an IEntity pointer vector. This list is the master list of all carriers. Carriers will be taken
 			* from this list to deliver packages.
 			*  
-			* @param package: carrier pointer to be added 
+			* @param carrier: carrier pointer to be added 
 			*
 			*/
 			void AddWaitingCarrier(IEntity* carrier); 

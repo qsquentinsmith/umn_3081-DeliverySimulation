@@ -20,6 +20,13 @@ namespace csci3081 {
  */ 
   class Smart : public IStrategy {
     public: 
+      /**
+      * @brief allows smart strategy access to the graph pointer to retrieve smart routes
+      *
+      * @param graph: passes in graph from delivery simulations call to IGraph facade
+      * 
+      */
+
       Smart(const IGraph* graph); 
 
        /**
