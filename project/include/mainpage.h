@@ -84,9 +84,6 @@ On the other hand, a disadvantage of using the composite factory pattern would b
 
 Example Composite Factory Pattern:
 
-<u>Composite Factory UML General</u>
-
-<img src="../images/CompositeFactory.png" width="1000">
 
 <u>Delivery Simulation Composite Factory UML</u>
 
@@ -189,9 +186,6 @@ Choosing the route relies on our <a href = https://refactoring.guru/design-patte
 
 A strategy pattern defines a family of algorithms, encapsulates each one, and then makes them interchangeable. It allows for the algorithms to be independent, which reduces coupling. The concrete classes in our strategy pattern are beeline, smart_path, and parabolic. These concrete classes inherit from our abstract strategy class which ensures interchangeability. The strategy class is called from each of the carriers (drone or robot), so the specific carrier will have a path associated with it. 
 
-<u>Strategy Pattern General UML</u>
-
-<img src="../images/strategyPattern.png" width="600">
 
 <u>Simulation Strategy Pattern UML</u>
 
@@ -204,13 +198,10 @@ A strategy pattern defines a family of algorithms, encapsulates each one, and th
 
 In order to add color changing behavior to the package, we decided to incorporate the decorator pattern. In terms of the UML diagram, ‘EntityBase’ is an abstract class, which has a pure virtual method called ‘SetDynamic’. This method allows entities to move or stay put; the EntityBase protected variable ‘dynamic’ must be set to true in order for an entity to move. A concrete package class named ‘Package’ inherits from EntityBase and overrides SetDynamic in the most basic way by setting the ‘dynamic’ variable to the value passed into the method. On the other hand, a base package decorator class named ‘PackageDecorator’ also inherits from EntityBase. This is the base class for all of our package decorations. Each decoration has one class: LightWeight, MiddleWeight, HeavyWeight. Each of these subclasses override SetDynamic to not only set whether the package should move, but also to add color depending on the weight. Lastly, the ‘DecoratorFactory’ class utilizes the simple factory pattern to create specific decorations based on the package that is passed in to the ‘GetDecoratedPackage’ method. While handling the movement of the carriers and packages in the DeliveryManager class, the DecoratorFactory churns out a decorated package with type ‘EntityBase✴’. Through polymorphism, calling SetDynamic on this decorated package will execute the SetDynamic method depending on its decoration. 
 
-<u>Decorator Pattern UML</u>
-
-<img src="../images/decorator_uml_gen.png" width="400">
 
 <u>Simulation Decorator Pattern UML</u>
 
-<img src="../images/decorator.png" width="500">
+<img src="../images/decorator.png" width="700">
 
 <b>Reasoning for Pattern Used:</b>
 
@@ -256,6 +247,8 @@ Our second meeting consisted of many large changes to our program.  It was at th
 During our last team meeting before the submission deadline, we determined which documentation and testing tasks need to be accomplished. These were delegated based on which tasks each team member had previously completed.  For Peter, he was given the task of completing the testing and documentation on our design and implementation of the observers, as well as completing the team documentation.  Nakul was tasked with documenting the design of the beeline route and testing of the drone. Spencer completed the parabolic testing and design documentation.  
 Finally, Quentin was in charge of smart path documentation and testing the robot.
  
+<b><u>Iteration 3:</u></b> 
+
 <b>Meeting #4:</b> 
 
 During our first team meeting, after deciding on which feature to implement, we all started working on the decorator pattern.  This was a team effort in order to restructure existing code, create a decorator class, and create a simple factory for the pattern to use.  We had a few initial versions that didn’t follow the pattern properly and were then needed to be redone.
