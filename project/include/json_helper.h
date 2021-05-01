@@ -30,17 +30,6 @@ public:
    * bool contains = JsonHelper::ContainsKey(val, "battery_capacity");
    * if (contains)...
    * ```
-   *
-   * ```
-   * std::vector<std::vector<float>> path = ...
-   * ...
-   * picojson::object notification_builder = JsonHelper::CreateJsonNotification();
-   * JsonHelper::AddStdVectorVectorFloatToObject(notification_builder, "path", path);
-   * ...
-   * picojson::value notification_to_send = JsonHelper::ConvertJsonObjectToValue(notification_builder);
-   * SendToObservers(notification_to_send);
-   * ...
-   * ```
    */
 
   /// Returns the key from json object obj as a json value, throws error if key doesn't exist.
@@ -156,13 +145,11 @@ public:
   }
 
   /// Given a picojson object, key, and vector<vector<float>> array, adds the array as the value for key in obj
-  static void AddStdVectorVectorFloatToJsonObject(picojson::object& obj, 
-                                                 std::string key, std::vector<std::vector<float>> array) {
+  static void AddStdVectorVectorFloatToJsonObject(picojson::object& obj, std::string key, std::vector<std::vector<float>> array) {
     obj[key] = EncodeArray(array);
   }
 
-  /// Given a vector<vector<float>> array, returns the array as a picojson::value
-  static picojson::value EncodeArray(const vector<vector<float>> arr) { //todo discard some precision by converting to strings?
+  static picojson::value EncodeArray(const vector<vector<float>> arr) {
     vector<picojson::value> result;
     for(vector<float> subarr : arr) {
       vector<picojson::value> subarr_encode;

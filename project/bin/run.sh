@@ -4,7 +4,7 @@ PORT=$2
 
 if [ -z "$2" ]
 then
-    PORT=8081
+    PORT=8082
 fi
 
 SCENE=$1

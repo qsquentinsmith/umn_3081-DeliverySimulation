@@ -1,9 +1,5 @@
 # Iteration Two: Enhancing and Extending the Package Delivery System
 
-## Iteration 2 - Version 6, April 19th - Due Date Change - Iteration 2 Final Deliverable is due by 11:59 PM April 20th
-
-## Iteration 2 - Version 5, March 28th - Adding priority 4 to the final deliverable requirements and adding delivery of multiple packages to multiple customers in the first deliverable.
-
 ## Iteration 2 - VERSION 4, March 26th  - Adding clarification regarding path passed to observers and robot entity.
 
 ## Iteration 2 - VERSION 3, March 23rd  - Adding clarification that simulations should be capable of multiple-package simulations.
@@ -15,7 +11,7 @@
 | Date | Item | Description of Verification and Validation of Deliverable(s) |
 |:----:|:-----|:------------|
 | FRI, April 2nd, 11:55pm | Robot also delivers packages and implement the Observer Pattern for observing Packages, Drones, and Robots. Fix your GoogleTests | inspection |
-| Mon, April 20 , 11:59pm | Incorporate a strategy for choosing different routes (smart, beeline, parabolic) for the drone and when the battery is depleted the drone or robot will drop the package and become idle. The package must be rescheduled for delivery  | Automated tests and inspection |
+| Mon, April 19 , 11:55pm | Incorporate a strategy for choosing different routes (smart, beeline, parabolic) for the drone and when the battery is depleted the drone or robot will drop the package and become idle. The package must be rescheduled for delivery  | Automated tests and inspection |
 
 In the previous iteration you showed that a drone can deliver a package to a customer either using a predefined route or a beeline route. In this iteration we will be enhancing the functionality of the previous iteration to include a robot that also delivers packages, report when a package is scheduled, in route, and when it has been delivered. Add additional reporting features for the robot and drone to report when they are moving or idle. You will also implement a strategy for routes the drone will take either smart, beeline, or parabolic. (All three routes will be tested). Add the functionality of determining if the battery of either the robot or the drone is depleted the package will be dropped, rescheduled for delivery, and the robot or drone will be idle.
 
@@ -31,9 +27,7 @@ You will work with your team to complete this iteration. A lab will be posted de
 
 2. Implement the observer pattern to report when a package is scheduled, delivered, or enroute to all of the observers. In addition, report when either entity the drone or the robot are moving or idle. Further details can be found in the section Deliverables and Submission Process. **See: [Observer Pattern]( https://www.geeksforgeeks.org/observer-pattern-set-1-introduction/) and also chapter two in the heads first design book** for an overview of the observer pattern. 
 
-3. **The simulation must show the robot/drone can deliver multiple packages to multiple customers.**
-
-4. Fix your google tests from the first iteration based upon the feedback received. 
+3. Fix your google tests from the first iteration based upon the feedback received. 
 
 ### Final Deliverable --- Due Monday April 19th by 11:59 PM
 
@@ -43,15 +37,13 @@ The strategy pattern may be useful for designing and implementing this capabilit
 a. https://www.geeksforgeeks.org/strategy-pattern-set-2 (in Java)  
 b. https://sourcemaking.com/design_patterns/strategy/cpp/1 (in c++)  
          
-2. Priority 4 must be implemented in the simulation.
+2. In your Doxygen mainpage add a section named: **"Designing and Implementing the different routes"** that discusses the design and implementation of different routes and any design pattern used by the drone to deliver packages. Specify what classes and methods you had to add, where you had to add them, - and include pictures where applicable and possible. **Note which parts of the design and implementation were most difficult for you, and include any tips or advice on how to understand and implement the different routes (for example, what sources of information (documentation, lecture, lab) that helped you understand the routes and enabled you to design and implement it (for example, what sources of information (e.g., links to web sites, books, lecture, lab)).** 
 
-3. In your Doxygen mainpage add a section named: **"Designing and Implementing the different routes"** that discusses the design and implementation of different routes and any design pattern used by the drone to deliver packages. Specify what classes and methods you had to add, where you had to add them, - and include pictures where applicable and possible. **Note which parts of the design and implementation were most difficult for you, and include any tips or advice on how to understand and implement the different routes (for example, what sources of information (documentation, lecture, lab) that helped you understand the routes and enabled you to design and implement it (for example, what sources of information (e.g., links to web sites, books, lecture, lab)).** 
+3. In your Doxygen mainpage add a section named: **Team Documentation** that includes summaries of team meetings (minimum of three) and who was assigned a task to complete. 
 
-4. In your Doxygen mainpage add a section named: **Team Documentation** that includes summaries of team meetings (minimum of three) and who was assigned a task to complete. 
+4. Ensure all new classes and methods you have written are properly documented. All header files must document the classes and their methods using Doxygen, and all implementation (that is, \*.cc) files must have self-documenting code. **You do not need to document the web server code base.** 
 
-5. Ensure all new classes and methods you have written are properly documented. All header files must document the classes and their methods using Doxygen, and all implementation (that is, \*.cc) files must have self-documenting code. **You do not need to document the web server code base.** 
-
-6. Correct and update your UML class diagram from Iteration 1 to include the changes to your code including all classes you added to complete the iteration 2 requirements and their relationships to each other and the classes that previously existed in the simulation.
+5. Correct and update your UML class diagram from Iteration 1 to include the changes to your code including all classes you added to complete the iteration 2 requirements and their relationships to each other and the classes that previously existed in the simulation.
     
 **NOTE, if you are unable to complete all or a portion of an implementation item, include a discussion of your PROPOSED design of the observer pattern in your mainpage, and your PROPOSED class design / changes for all your implementation items in your UML and and note that in a paragraph at the top of your mainpage (Tell us what you did not sucessfully implement - success is defined as the functionality compiles and executes) so you recieve credit for your design efforts.**
 
@@ -76,7 +68,7 @@ In this iteration, you do the following development including:
 - adding to the simulation class structure 
 - ensuring coding style compliance
 - augmenting the design discussion in your doxygen mainpage to include a discussion on your design and implementation of the routes used by the drone.
-- augmenting the design discussion in your doxygen mainpage to include a section on your teamwork for this iteration
+- augmenting the design discussion in your doxygen mainpage to include a discussion to include a section on your teamwork for this iteration
 - modify/update your iteration UML design documentation to include the classes and methods you add or refactor in iteration 2.
 - using Doxygen to document and generate documentation.
 - Use git, and produce self-documenting code (i.e. good organization and naming conventions). 
@@ -117,7 +109,7 @@ Below is a prioritized list of enhancements to our support code to make the simu
  
  * We have already made observers for you: *the WebSceneViewer and the EntityConsoleLogger*.  The teams task is to implement the subject part of the Observer pattern, your team does not need to implement any Observers.
 
- * When a package has been scheduled, picked up, or delivered, all observers associated with the simulation should have their *OnEvent(...) method* called. This method is part of the front-end code, but you need to pass the correct information to it in regards to the observer in the following situations:
+ * When a package has been scheduled, picked up, or delivered, all observers associated with the simulation should have their *OnEvent(...) method* called. This method is part of the front-end code, but you need to pass the correct information to in regards to the observer in the following situations:
 
   * **Package scheduled:**</br>
  > observer->OnEvent({“type”: “notify”, “value”: “scheduled” }, package)

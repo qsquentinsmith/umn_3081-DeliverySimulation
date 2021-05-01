@@ -1,45 +1,108 @@
 #include "delivery_simulation.h"
-#include "entity_base.h"
 #include "json_helper.h"
-#include "drone.h"
 
 namespace csci3081 {
 
-DeliverySimulation::DeliverySimulation() {}
+DeliverySimulation::DeliverySimulation() {
+	factory = new CompositeFactory();
+	AddFactory(new DroneFactory()); 
+	AddFactory(new CustomerFactory());
+	AddFactory(new PackageFactory()); 
+	AddFactory(new RobotFactory());
+	observer_ = new Observer();
+	deliveryManager = new DeliveryManager(observer_);
+}
 
-DeliverySimulation::~DeliverySimulation() {}
+DeliverySimulation::~DeliverySimulation() {
+	delete factory; 
+	delete deliveryManager; 
+}
+
+int DeliverySimulation::Uid() { 
+	id_++; 
+	return id_; 
+}
 
 IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
-  //TODO for lab10: replace the ?????'s with the appropriate values,
-  //  then uncomment the section of code
-  /*
-  if (JsonHelper::GetString(val, "????") == "drone") {
-    std::vector<float> position = JsonHelper::GetStdFloatVector(val, "????????");
-    std::vector<float> direction = JsonHelper::GetStdFloatVector(val, "????????");
-    return new Drone(????, ????, ????);
-  }
-  */
-  return NULL;
+	std::string entityType = JsonHelper::GetString(val, "type");
+	IEntity* entity_ = factory->CreateEntity(val);
+
+	if (entityType == "drone" || entityType == "robot") {
+		((Carrier*) entity_)->SetGraph(graph_);
+		((Carrier*) entity_)->SetStrategy();
+	}
+
+
+	if (entity_) {
+		EntityBase* base = dynamic_cast<EntityBase*>(entity_);
+		base->SetId(Uid());
+		return entity_; 
+	}
+	return nullptr;
 }
 
-void DeliverySimulation::AddFactory(IEntityFactory* factory) {}
+void DeliverySimulation::AddFactory(IEntityFactory* factory) {
+	if (this->factory) {
+		this->factory->AddFactory(factory);
+	}
+}
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
-  //TODO for lab10: One line of code
+ 	entities_.push_back(entity);
+	
+	const picojson::object& obj = entity->GetDetails(); 
+    std::string carrierType = JsonHelper::GetString(obj, "type"); 
+
+	if((carrierType == "drone" || carrierType == "robot") && entity->IsDynamic() == false && ((Carrier*) entity)->IsScheduled() == false){	//remember to add trucks
+		deliveryManager->AddWaitingCarrier(entity);
+	}
 }
 
-void DeliverySimulation::SetGraph(const IGraph* graph) {}
+void DeliverySimulation::SetGraph(const IGraph* graph) {
+	graph_ = graph;
+}
 
-void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {}
+void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
+	IEntity* carrier = nullptr; 
+	((Package*) package)->SetCustomer((Customer*) dest); //gives package the customer location
 
-void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
+	//*****Notify package scheduled*****
+	observer_->Scheduled(package);
 
-void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
+	if (deliveryManager) {
+		
+		carrier = deliveryManager->GetFirstCarrierAvailable(); //gets carrier to be used 
+		
+		if (carrier && package) {
+			((Carrier*)carrier)->SetGraph(graph_);
 
-const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
+			deliveryManager->AddCarrierAndPackage(carrier, package); //carrier and package given to DeliveryManager to move
+		}// inner if 
+		
+		// more packages than carriers
+		else {
+			deliveryManager->AddWaitingPackage(package);
+		}//else if
+	}// outer if 
+}
 
-void DeliverySimulation::Update(float dt) {}
+void DeliverySimulation::AddObserver(IEntityObserver* observer) {
+	observer_->AddObserver(observer);
+}
 
+void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
+	observer_->RemoveObserver(observer);
+}
+
+const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { 
+	return entities_; 
+}
+
+void DeliverySimulation::Update(float dt) {
+	if (deliveryManager) {
+		deliveryManager->MoveCarriersAndPackages(dt);
+	}	
+}
 
 // DO NOT MODIFY THE FOLLOWING UNLESS YOU REALLY KNOW WHAT YOU ARE DOING
 void DeliverySimulation::RunScript(const picojson::array& script, IEntitySystem* system) const {

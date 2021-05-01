@@ -10,6 +10,11 @@
 #include <EntityProject/facade/delivery_system.h>
 #include <vector>
 #include <string>
+#include <iostream>
+#include "composite_factory.h"
+#include "delivery_manager.h"
+#include "smart_path.h"
+#include "observer.h"
 
 namespace csci3081 {
 
@@ -109,6 +114,13 @@ class DeliverySimulation : public IDeliverySystem {
   void Update(float dt);
 
   /**
+   * @brief Used for setting ids
+   * 
+  */
+  int Uid();
+
+
+  /**
    * @brief You do not need to worry about this function
    * 
    * This function takes care of turning json into function calls of your system.
@@ -118,10 +130,14 @@ class DeliverySimulation : public IDeliverySystem {
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
 
  private:
-  // You don't strictly need to use the following variable, but it is probably
-  // the most straightforward way of storing the entities in the system.
-  // Feel free to use it as is or change it.
   std::vector<IEntity*> entities_;
+  const IGraph* graph_; 
+  CompositeFactory* factory; 
+  Observer* observer_;
+  DeliveryManager* deliveryManager;
+  //Decorator* decorator;
+
+  int id_ = -1;
 };
 
 }  // namespace csci3081
