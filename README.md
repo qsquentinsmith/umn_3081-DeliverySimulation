@@ -1,10 +1,6 @@
-Information about project found on Doxygen. 
 
-Overview:
+# CSCI 3081 Delivery Simulation Project
 
-CSCI 3081 Delivery Simulation Project
-
-Prerequisites:
 ## Pre-requisites
   * [Git](https://git-scm.com/)
 
@@ -91,8 +87,8 @@ Prerequisites:
 
 
 
-Introduction:
-================
+## Introduction:
+
 <a id="top"></a>
 Welcome to our Autonomous Delivery Simulation! 
 <b>Table of Contents:</b>
@@ -112,17 +108,19 @@ Welcome to our Autonomous Delivery Simulation!
 7. <a href="#difficulties">Difficulties and Advice</a>
 8. <a href="#team">Team Documentation</a>
 <a id = "getCode">1. How To Run The Simulation</a>:
-------------------------------------------------------------
- 
+-------------------------------------------------------------------- 
+
 <u> Obtaining the Code: </u>
 You can clone the Delivery Simulation from this github repository: https://github.umn.edu/umn-csci-3081-s21/repo-iter3-01-29.git
 <u> Compiling the Code: </u>
 In order to run the simulation, ensure you are in the project directory.
 In your terminal, run the command 'make'. This compiles the project. 
+
 ~~~~~
 cd /home/user/repo/project
 make
 ~~~~~
+
 Hopefully, the 'make' command compiles without errors; it may take a while. 
 After the project compiles, type 'bin/run.sh' to start the server. 
 Open a web browser (firefox) and go to this link: http://127.0.0.1:8082/
