@@ -117,11 +117,15 @@ Welcome to our Autonomous Delivery Simulation!
 
 <u> Obtaining the Code: </u>
 
+
 You can clone the Delivery Simulation from this github repository: https://github.umn.edu/umn-csci-3081-s21/repo-iter3-01-29.git
+
 
 <u> Compiling the Code: </u>
 
+
 In order to run the simulation, ensure you are in the project directory.
+
 
 In your terminal, run the command 'make'. This compiles the project. 
 
@@ -169,6 +173,8 @@ Example Composite Factory Pattern:
 <u>Delivery Simulation Composite Factory UML</u>
 
 <img src="/projects/docs/images/composite_fact.png" width="1400">
+
+![composite_fact](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/CompositeFactory.png)
 
 <b><a id = "abstractFactory"> Abstract Factory </a></b>
 
