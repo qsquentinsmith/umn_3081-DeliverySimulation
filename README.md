@@ -1,17 +1,46 @@
 
 # CSCI 3081 Delivery Simulation Project
 
-## Pre-requisites
+
+
+## Introduction:
+
+<a id="top"></a>
+
+Welcome to our Autonomous Delivery Simulation! 
+
+<b>Table of Contents:</b>
+
+1. <a href="#getCode"> How To Run The Simulation </a>
+2. <a href="#newFeat">New Feature</a>
+3. <a href="#designPatterns"> Entity Factory Design Choices </a>
+    - <a href="#compositeFactory">Composite Factory</a>
+    - <a href="#concreteFactory">Concrete Factory</a>
+    - <a href="#abstractFactory">Abstract Factory</a>
+4. <a href="#observer"> Observer Pattern Design Discussion </a>
+5. <a href="#routes"> Design and Implementing New Routes </a>
+    - <a href="#beeline">The Beeline Path Route</a>
+    - <a href="#smart">The Smart Path Route</a>
+    - <a href="#parabolic">The Parabolic Path Route</a>
+    - <a href="#strategy">Strategy Pattern</a>
+6. <a href="#decorator">Decorator Pattern</a>
+7. <a href="#difficulties">Difficulties and Advice</a>
+8. <a href="#team">Team Documentation</a>
+
+----------------------------------------------------------------
+## <a id = "getCode">1. How To Run The Simulation</a>:
+
+### Pre-requisites
   * [Git](https://git-scm.com/)
 
-## Docker Pre-requisites
+### Docker Pre-requisites
   * Windows 10 Home
     * Install [wsl2 and Ubuntu](https://www.youtube.com/watch?v=ilKQHAFeQR0&list=RDCMUCzLbHrU7U3cUDNQWWAqjceA&start_radio=1&t=7)
   * Install [Docker Desktop](https://hub.docker.com/?overlay=onboarding) from [Docker Hub](https://hub.docker.com/)
   * Linux
     * Use [docker group instead of sudo](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 
-### Getting Started with Docker
+#### Getting Started with Docker
 
 1. Build docker image
 
@@ -86,35 +115,6 @@
  5. Open up Firefox and browse to http://127.0.0.1:8081/
 
 
-
-## Introduction:
-
-<a id="top"></a>
-
-Welcome to our Autonomous Delivery Simulation! 
-
-<b>Table of Contents:</b>
-
-1. <a href="#getCode"> How To Run The Simulation </a>
-2. <a href="#newFeat">New Feature</a>
-3. <a href="#designPatterns"> Entity Factory Design Choices </a>
-    - <a href="#compositeFactory">Composite Factory</a>
-    - <a href="#concreteFactory">Concrete Factory</a>
-    - <a href="#abstractFactory">Abstract Factory</a>
-4. <a href="#observer"> Observer Pattern Design Discussion </a>
-5. <a href="#routes"> Design and Implementing New Routes </a>
-    - <a href="#beeline">The Beeline Path Route</a>
-    - <a href="#smart">The Smart Path Route</a>
-    - <a href="#parabolic">The Parabolic Path Route</a>
-    - <a href="#strategy">Strategy Pattern</a>
-6. <a href="#decorator">Decorator Pattern</a>
-7. <a href="#difficulties">Difficulties and Advice</a>
-8. <a href="#team">Team Documentation</a>
-
-----------------------------------------------------------------
-## <a id = "getCode">1. How To Run The Simulation</a>:
-
-
 <u> Obtaining the Code: </u>
 
 You can clone the Delivery Simulation from this github repository: https://github.umn.edu/umn-csci-3081-s21/repo-iter3-01-29.git
@@ -168,7 +168,7 @@ On the other hand, a disadvantage of using the composite factory pattern would b
 Example Composite Factory Pattern:
 <u>Delivery Simulation Composite Factory UML</u>
 
-<img src="../projects/docs/images/composite_fact.png" width="1400">
+<img src="/projects/docs/images/composite_fact.png" width="1400">
 
 <b><a id = "abstractFactory"> Abstract Factory </a></b>
 
