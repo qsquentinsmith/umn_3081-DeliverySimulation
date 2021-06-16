@@ -11,7 +11,7 @@
   * Linux
     * Use [docker group instead of sudo](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 
-## Getting Started with Docker
+### Getting Started with Docker
 
 1. Build docker image
 
@@ -45,7 +45,7 @@
 5. Open up Firefox and browse to http://127.0.0.1:8081/
 
 
-## Getting Started using SSH on CSE Lab machines
+### Getting Started using SSH on CSE Lab machines
 
 1. Run the ssh environment
     ```bash
@@ -64,7 +64,7 @@
   
 5. Open up Firefox and browse to http://127.0.0.1:8081/
 
-## Getting Started with VOLE-3D or VOLE
+### Getting Started with VOLE-3D or VOLE
 
 1. Log on to [VOLE-3D or VOLE](https://vole.cse.umn.edu/) (VOLE is slower for graphics, but is great for tests, etc...)
 
@@ -90,8 +90,11 @@
 ## Introduction:
 
 <a id="top"></a>
+
 Welcome to our Autonomous Delivery Simulation! 
+
 <b>Table of Contents:</b>
+
 1. <a href="#getCode"> How To Run The Simulation </a>
 2. <a href="#newFeat">New Feature</a>
 3. <a href="#designPatterns"> Entity Factory Design Choices </a>
@@ -107,8 +110,10 @@ Welcome to our Autonomous Delivery Simulation!
 6. <a href="#decorator">Decorator Pattern</a>
 7. <a href="#difficulties">Difficulties and Advice</a>
 8. <a href="#team">Team Documentation</a>
-<a id = "getCode">1. How To Run The Simulation</a>:
--------------------------------------------------------------------- 
+
+----------------------------------------------------------------
+## <a id = "getCode">1. How To Run The Simulation</a>:
+
 
 <u> Obtaining the Code: </u>
 
@@ -136,6 +141,8 @@ project has compiled. For example, we can test all features with the command 'bi
 
 <a href="#top">Back to top</a>
 
+------------------------------------------------------------------
+
 ## <a id = "newFeat">2. New Features</a>:
 
 Our additional feature involves the package changing color depending on its weight. Once the package is picked up, it’ll become green if it is a lightweight, yellow if it is a middleweight or red if it is a heavyweight. We defined lightweight packages as less than 2 lbs, middleweight packages as between 2 lbs and 4 lbs and heavyweight packages as any weight above 4 lbs. As a result, these color changes will help indicate the heaviness of the load carried by the drone or robot.
@@ -146,8 +153,10 @@ If you would like to run our additional feature, run the scene “decorated_pack
 
 <a href="#top">Back to top</a>
 
+--------------------------------------------------------------------
+
 ## <a id ="designPatterns">3. Entity Factory Design Choices</a>:
-----------------------------------------------------------------
+
  
 Let's analyze the design pattern used in this project and possible alternatives!
 <b><a id = "compositeFactory"> Composite Factory </a></b>
@@ -169,7 +178,7 @@ A con regarding such a pattern would be that concrete classes extending the abst
 
 Example Abstract Factory Pattern:
 
-<img src="../projects/docs/images/AbstractFactory.png" width="600">
+<img src="./projects/docs/images/AbstractFactory.png" width="600">
  
 <b><a id = "concreteFactory"> Concrete Factory </a></b>
 
@@ -179,9 +188,11 @@ In contrast, this is not a very good design choice if you have to keep adding di
 
 Example Concrete Factory Pattern: 
  
-<img src="../projects/docs/images/ConcreteFactory.png" width="600">
+<img src="./projects/docs/images/ConcreteFactory.png" width="600">
 
 <a href="#top">Back to top</a>
+
+-------------------------------------------------------------------------
 
 ## <a id = "observer">4. Observer Pattern Design Discussion</a>:
  
@@ -198,6 +209,8 @@ Our second deliverable solves all the problems that the first deliverable had. A
 <img src="../projects/docs/images/observer.png" width="600">
 
 <a href="#top">Back to top</a>
+
+------------------------------------------------------------------
 
 ## <a id = "routes">5. Design and Implementing the different routes </a>:
 
@@ -244,6 +257,8 @@ A strategy pattern defines a family of algorithms, encapsulates each one, and th
 
 <a href="#top">Back to top</a>
 
+-----------------------------------------------------------------------
+
 ## <a id = "decorator">5. Decorator Pattern</a>:
 
 In order to add color changing behavior to the package, we decided to incorporate the decorator pattern. In terms of the UML diagram, ‘EntityBase’ is an abstract class, which has a pure virtual method called ‘SetDynamic’. This method allows entities to move or stay put; the EntityBase protected variable ‘dynamic’ must be set to true in order for an entity to move. A concrete package class named ‘Package’ inherits from EntityBase and overrides SetDynamic in the most basic way by setting the ‘dynamic’ variable to the value passed into the method. On the other hand, a base package decorator class named ‘PackageDecorator’ also inherits from EntityBase. This is the base class for all of our package decorations. Each decoration has one class: LightWeight, MiddleWeight, HeavyWeight. Each of these subclasses override SetDynamic to not only set whether the package should move, but also to add color depending on the weight. Lastly, the ‘DecoratorFactory’ class utilizes the simple factory pattern to create specific decorations based on the package that is passed in to the ‘GetDecoratedPackage’ method. While handling the movement of the carriers and packages in the DeliveryManager class, the DecoratorFactory churns out a decorated package with type ‘EntityBase✴’. Through polymorphism, calling SetDynamic on this decorated package will execute the SetDynamic method depending on its decoration. 
@@ -258,6 +273,8 @@ We considered using basic inheritance in order to create customized packages. In
 
 <a href="#top">Back to top</a>
 
+-----------------------------------------------------------------
+
 ## <a id = "difficulties">6.Difficulties and Advice </a>
 
 <b>Second Iteration:</b>
@@ -269,6 +286,8 @@ There were several aspects of this iteration that were difficult: understanding 
 During the third iteration, the decorator pattern was particularly challenging to implement. Our first interpretation of the decorator pattern was incorrect because we didn't implement the class structure properly. We originally changed the color of the package directly instead of passing the entity into the constructor of a decoration class. We then corrected the structure of our decorator pattern so that we included a PackageDecorator class that inherits from our virtual class EntityBase. Our concrete decorations then inherit from this PackageDecorator class, which makes it easier to implement the color change because we can override a function of the concrete package and apply the color change. In order to implement the decorator pattern, it is important to stick to the correct class structure, as well as making sure the constructors of the decorator class family take in the abstract class pointer of the object to be decorated. Visiting TA office hours and studying the examples posted on Canvas are also great resources to be aware of. 
 
 <a href="#top">Back to top</a>
+
+---------------------------------------------------------------
 
 ## <a id = "team">7. Team Documentation</a>:
 
