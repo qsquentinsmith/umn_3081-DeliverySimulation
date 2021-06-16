@@ -172,8 +172,6 @@ On the other hand, a disadvantage of using the composite factory pattern would b
 Example Composite Factory Pattern:
 <u>Delivery Simulation Composite Factory UML</u>
 
-<img src="/projects/docs/images/composite_fact.png" width="1400">
-
 ![composite_fact](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/CompositeFactory.png)
 
 <b><a id = "abstractFactory"> Abstract Factory </a></b>
@@ -184,7 +182,7 @@ A con regarding such a pattern would be that concrete classes extending the abst
 
 Example Abstract Factory Pattern:
 
-<img src="./projects/docs/images/AbstractFactory.png" width="600">
+![abstract factory](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/AbstractFactory.png)
  
 <b><a id = "concreteFactory"> Concrete Factory </a></b>
 
@@ -194,7 +192,7 @@ In contrast, this is not a very good design choice if you have to keep adding di
 
 Example Concrete Factory Pattern: 
  
-<img src="./projects/docs/images/ConcreteFactory.png" width="600">
+![concrete factory](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/ConcreteFactory.png)
 
 <a href="#top">Back to top</a>
 
@@ -212,7 +210,7 @@ Our second deliverable solves all the problems that the first deliverable had. A
 
 <u>Simulation Observer Pattern UML</u>
 
-<img src="../projects/docs/images/observer.png" width="600">
+![observer](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/observer.png)
 
 <a href="#top">Back to top</a>
 
@@ -226,7 +224,7 @@ We have created three routes for our simulation: the beeline route, the smart pa
 
 The beeline route is one of the strategies implemented by the strategy pattern; the Beeline class generates the route necessary for carriers to move in a beeline way. As of now, only the drone carriers can move in a beeline. More specifically, the drone will rise high enough above the buildings and move to its destination in a straight line. Thereafter, it'll lower down until it reaches its destination. Given the initial position of the drone and its final destination, which is either the package location or the customer location, there is enough information to generate the coordinates. The coordinates are as follows: the initial position, high enough above the initial position, high enough above the destination and the destination. We use a height of 350 above the two endpoints, which should be high enough not to collide with any buildings. In order to better visualize the beeline path, the observer pattern will generate a colored path in the simulation during the drone's flight.  
 
-<img src="../projects/docs/images/beeline.png" width="800">
+![beeline](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/beeline.png)
 
 <b><a id = "smart"> The Smart Path Route: </a></b>
 
@@ -234,7 +232,7 @@ The smart path route utilizes the interface IGraph. IGraph represents a read onl
 
 The observer pattern will trace the smart route if used. The smart route is used in both carrier classes, drone and robot, and is the only option for the robot class. To see all smart paths during the simulation go to the top right menu box and check the all routes box.
 
-<img src="../projects/docs/images/smart.png" width="800">
+![smart](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/smart.png)
 
 <b><a id = "parabolic"> The Parabolic Path Route:</a></b>
 
@@ -249,7 +247,7 @@ y = (1 - distance(V, Vm)2 / distance(Vo, Vm)2) * j
     - Vt is our step interval equal to distance(source, destination) / T
     - j is the maximum height the parabola will reach
 
-<img src="../projects/docs/images/parabolic.png" width="800">
+![parabolic](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/parabolic.png)
 
 <b><a id = "strategy">Strategy Pattern:</a></b>
 
@@ -259,7 +257,8 @@ A strategy pattern defines a family of algorithms, encapsulates each one, and th
 
 <u>Simulation Strategy Pattern UML</u>
 
-<img src="../projects/docs/images/strategy.png" width="600">
+
+![strategy](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/strategy.png)
 
 <a href="#top">Back to top</a>
 
@@ -271,7 +270,7 @@ In order to add color changing behavior to the package, we decided to incorporat
 
 <u>Simulation Decorator Pattern UML</u>
 
-<img src="../projects/docs/images/decorator.png" width="700">
+![decorator](https://github.com/qsquentinsmith/umn_3081-DeliverySimulation/blob/master/project/docs/images/decorator.png)
 
 <b>Reasoning for Pattern Used:</b>
 
